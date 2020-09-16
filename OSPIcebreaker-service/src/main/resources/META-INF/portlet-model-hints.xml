@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.osp.icebreaker.model.IcebreakerEntry">
+		<field name="uuid" type="String" />
+		<field name="icebreakerEntryId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="status" type="int" />
+		<field name="name" type="String" />
+		<field name="type" type="String" />
+		<field name="ibIp" type="String" />
+		<field name="ibPort" type="String" />
+		<field name="ibUserId" type="String" />
+		<field name="ibUserPassword" type="String" />
+		<field localized="true" name="description" type="String" />
+	</model>
+	<model name="com.osp.icebreaker.model.Job">
+		<field name="uuid" type="String" />
+		<field name="jobId" type="long" />
+		<field name="jobName" type="String" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="userId" type="long" />
+		<field name="clusterId" type="long" />
+		<field name="status" type="int" />
+		<field name="submitId" type="String" />
+		<field name="solverExe" type="String" />
+		<field name="workingDir" type="String" />
+		<field name="runType" type="String" />
+		<field name="logFileName" type="String" />
+		<field name="title" type="String" />
+		<field name="queueName" type="String" />
+		<field name="command" type="String" />
+		<field name="referenceFiles" type="String" />
+		<field name="environmentVars" type="String" />
+		<field name="nodes" type="int" />
+		<field name="processorsPerNode" type="int" />
+		<field name="wallTime" type="String" />
+		<field name="eligibleTime" type="String" />
+		<field name="afterAny" type="String" />
+		<field name="afterOk" type="String" />
+		<field name="submitArgs" type="String" />
+		<field name="jobStatus" type="int" />
+		<field name="reserveResults" type="boolean" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="queuedDate" type="Date" />
+		<field name="startDate" type="Date" />
+		<field name="completeDate" type="Date" />
+		<field name="usedMemory" type="String" />
+		<field name="usedCpuTime" type="String" />
+		<field name="usedWalltime" type="String" />
+	</model>
+	<model name="com.osp.icebreaker.model.JobData">
+		<field name="jobId" type="long" />
+		<field name="inputData" type="String" />
+	</model>
+	<model name="com.osp.icebreaker.model.OSPCluster">
+		<field name="uuid" type="String" />
+		<field name="clusterId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="status" type="int" />
+		<field name="clusterName" type="String" />
+		<field name="osFamily" type="String" />
+		<field name="osName" type="String" />
+		<field name="osVersion" type="String" />
+		<field name="appRootDir" type="String" />
+		<field name="dataRootDir" type="String" />
+		<field name="contentRootDir" type="String" />
+		<field localized="true" name="description" type="String" />
+		<field name="serverIp" type="String" />
+		<field name="sshPort" type="String" />
+		<field name="accessMethod" type="String" />
+		<field name="authorizedId" type="String" />
+		<field name="authorizedPassword" type="String" />
+		<field name="schedulerName" type="String" />
+		<field name="schedulerVersion" type="String" />
+		<field name="schedulerClass" type="String" />
+		<field name="schedulerStatus" type="int" />
+	</model>
+</model-hints>

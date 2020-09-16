@@ -1,0 +1,14 @@
+dependencies {
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly group: "org.osgi", name: "org.osgi.annotation.versioning"
+	compileOnly group: "org.osgi", name: "org.osgi.core"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	
+	compileOnly group: "javax.portlet", name: "portlet-api"
+	compileOnly group: "javax.servlet", name: "javax.servlet-api"
+	
+	compileInclude group: "org.apache.commons", name: "commons-lang3", version:"3.6"
+	compileInclude group: "commons-io", name: "commons-io", version:"2.6"
+	compileInclude group: "org.apache.commons", name: "commons-exec", version:"1.3"
+	
+}

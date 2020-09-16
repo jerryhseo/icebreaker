@@ -1,0 +1,4 @@
+Bundle-Name: OSPIcebreaker-web
+Bundle-SymbolicName: com.osp.icebreaker.web.cluster
+Bundle-Version: 1.0.0
+Export-Package: com.osp.icebreaker.web.cluster.constants

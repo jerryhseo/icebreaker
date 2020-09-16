@@ -1,0 +1,37 @@
+create index IX_B47D5B17 on ICEBREAKER_IcebreakerEntry (groupId, status);
+create index IX_E76E297F on ICEBREAKER_IcebreakerEntry (status);
+create index IX_7F80481C on ICEBREAKER_IcebreakerEntry (type_[$COLUMN_LENGTH:75$]);
+create index IX_88ED42D3 on ICEBREAKER_IcebreakerEntry (userId);
+create index IX_78FCC14D on ICEBREAKER_IcebreakerEntry (uuid_[$COLUMN_LENGTH:75$], companyId);
+create unique index IX_516F370F on ICEBREAKER_IcebreakerEntry (uuid_[$COLUMN_LENGTH:75$], groupId);
+
+create index IX_38900AA0 on ICEBREAKER_Job (clusterId);
+create index IX_3E22B320 on ICEBREAKER_Job (groupId, clusterId);
+create index IX_296315FA on ICEBREAKER_Job (groupId, jobStatus);
+create index IX_7537CD10 on ICEBREAKER_Job (groupId, runType[$COLUMN_LENGTH:75$]);
+create index IX_856DD8CB on ICEBREAKER_Job (groupId, status);
+create index IX_A3559883 on ICEBREAKER_Job (groupId, title[$COLUMN_LENGTH:75$]);
+create index IX_2227A7A6 on ICEBREAKER_Job (groupId, userId, clusterId);
+create index IX_D680A80 on ICEBREAKER_Job (groupId, userId, jobStatus);
+create index IX_B0DC2B16 on ICEBREAKER_Job (groupId, userId, runType[$COLUMN_LENGTH:75$]);
+create index IX_A862A205 on ICEBREAKER_Job (groupId, userId, status);
+create index IX_6265C009 on ICEBREAKER_Job (groupId, userId, title[$COLUMN_LENGTH:75$]);
+create index IX_23D06D7A on ICEBREAKER_Job (jobStatus);
+create index IX_3D861767 on ICEBREAKER_Job (queueName[$COLUMN_LENGTH:75$]);
+create index IX_32150490 on ICEBREAKER_Job (runType[$COLUMN_LENGTH:75$]);
+create index IX_A44BB14B on ICEBREAKER_Job (status);
+create index IX_BD1AB003 on ICEBREAKER_Job (title[$COLUMN_LENGTH:75$]);
+create index IX_C3857F26 on ICEBREAKER_Job (userId, clusterId);
+create index IX_AEC5E200 on ICEBREAKER_Job (userId, jobStatus);
+create index IX_16C9E296 on ICEBREAKER_Job (userId, runType[$COLUMN_LENGTH:75$]);
+create index IX_7A1FFA85 on ICEBREAKER_Job (userId, status);
+create index IX_2F5B5789 on ICEBREAKER_Job (userId, title[$COLUMN_LENGTH:75$]);
+create index IX_C61BFA19 on ICEBREAKER_Job (uuid_[$COLUMN_LENGTH:75$], companyId);
+create unique index IX_1E5E32DB on ICEBREAKER_Job (uuid_[$COLUMN_LENGTH:75$], groupId);
+
+create unique index IX_5493CBA3 on ICEBREAKER_OSPCluster (clusterName[$COLUMN_LENGTH:75$]);
+create index IX_7D3D8B8 on ICEBREAKER_OSPCluster (groupId);
+create index IX_3AC58875 on ICEBREAKER_OSPCluster (osName[$COLUMN_LENGTH:75$]);
+create index IX_30AC2118 on ICEBREAKER_OSPCluster (status);
+create index IX_BF20CDA6 on ICEBREAKER_OSPCluster (uuid_[$COLUMN_LENGTH:75$], companyId);
+create unique index IX_B1AC85A8 on ICEBREAKER_OSPCluster (uuid_[$COLUMN_LENGTH:75$], groupId);

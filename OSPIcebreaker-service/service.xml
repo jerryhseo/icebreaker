@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.osp.icebreaker">
+	<author>Jerry H. Seo</author>
+	<namespace>ICEBREAKER</namespace>
+	
+	<entity name="OSPCluster" local-service="true" uuid="true" uuid-accessor="true">
+		<column name="clusterId" type="long" primary="true"></column>
+		<column name="companyId" type="long"></column>
+		<column name="groupId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+		
+		<!-- For business workflow -->
+		<column name="status" type="int"></column>
+		
+		<!--  Name of the cluster, for instance, Skylark, KNL, etc. -->
+		<column name="clusterName" type="String"></column>
+		
+		<!--  Information of the cluster's os -->
+		<column name="osFamily" type="String"></column>
+		<column name="osName" type="String"></column>
+		<column name="osVersion" type="String"></column>
+		
+		<!--  Information of the cluster's storage -->
+		<column name="appRootDir" type="String"></column>
+		<column name="dataRootDir" type="String"></column>
+		<column name="contentRootDir" type="String"></column>
+		
+		<!--  Short Description for the scheduler -->
+        <column name="description" localized="true" type="String"></column>
+		<!--  Status of the scheduler. one of Active, Inactive, Disabled -->
+		<!--  Server IP address of the server which the scheduler is running -->
+        <column name="serverIp" type="String"></column>
+		<!-- Method to connect to the scheduler, one of LOCALHOST, SSH, OPENAPI -->
+        <column name="sshPort" type="String"></column>
+		<column name="accessMethod" type="String"></column>
+		<!--  SSH port number which the scheduler is listening -->
+		<!-- URL to connect the scheduler through OPEN APIs -->
+		<column name="authorizedId" type="String"></column>
+        
+        <column name="authorizedPassword" type="String"></column>
+        <column name="schedulerName" type="String"></column>
+        <column name="schedulerVersion" type="String"></column>
+        <column name="schedulerClass" type="String"></column>
+        
+        <!-- Sort Order -->
+        <column name="schedulerStatus" type="int"></column>
+        
+        <order by="asc">
+            <order-column name="clusterName" order-by="asc"></order-column>
+        </order>
+        
+        <!-- Finders -->
+        <finder name="GroupId" return-type="Collection" >
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="Status" return-type="Collection" >
+            <finder-column name="status"></finder-column>
+        </finder>
+        <finder name="ClusterName" return-type="OSPCluster" unique="true">
+            <finder-column name="clusterName"></finder-column>
+        </finder>
+        <finder name="OSName" return-type="Collection">
+            <finder-column name="osName"></finder-column>
+        </finder>
+        
+        <!-- Exceptions -->
+        
+        <!-- References -->
+        <reference entity="AssetEntry" package-path="com.liferay.portlet.asset"/>
+        <reference entity="AssetLink" package-path="com.liferay.portlet.asset"/>
+        <reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+	
+    <entity name="Job" local-service="true" uuid="true" uuid-accessor="true">
+        <column name="jobId" primary="true" type="long"></column>
+        
+        <column name="jobName" type="String"></column>
+        
+        <column name="companyId" type="long"></column>
+        <column name="groupId" type="long"></column>
+        <column name="userId" type="long"></column>
+
+        <column name="clusterId" type="long"></column>
+        
+		<column name="status" type="int"></column>
+		<!--
+			TORQUE arguments 
+		 -->
+        <column name="submitId" type="String"></column>
+        <column name="solverExe" type="String"></column>
+        <column name="workingDir" type="String"></column>
+        <column name="runType" type="String"></column>
+        <column type="String" name="logFileName"></column>
+		<column name="title" type="String"></column>
+        <column name="queueName" type="String"></column>
+        <column type="String" name="command"></column>
+        <column name="referenceFiles" type="String"></column>
+        <column name="environmentVars" type="String"></column>
+		<column name="nodes" type="int"></column>
+		<column name="processorsPerNode" type="int"></column>
+        <column name="wallTime" type="String"></column>
+        <column name="eligibleTime" type="String"></column>
+		<column name="afterAny" type="String"></column>
+		<column name="afterOk" type="String"></column>
+		<column name="submitArgs" type="String"></column>
+		<column name="jobStatus" type="int"></column>
+        <column name="reserveResults" type="boolean"></column>
+        <column name="createDate" type="Date"></column>
+        <column name="modifiedDate" type="Date"></column>
+        <column name="queuedDate" type="Date"></column>
+        <column name="startDate" type="Date"></column>
+        <column name="completeDate" type="Date"></column>
+        <column name="usedMemory" type="String"></column>
+        <column name="usedCpuTime" type="String"></column>
+        <column name="usedWalltime" type="String"></column>
+		
+        <order by="desc">
+            <order-column name="createDate" order-by="desc"></order-column>
+        </order>
+        
+        <finder name="GroupId" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="UserId" return-type="Collection">
+            <finder-column name="userId"></finder-column>
+        </finder>
+        <finder name="UserId_G" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="userId"></finder-column>
+        </finder>
+        <finder name="Status" return-type="Collection">
+            <finder-column name="status"></finder-column>
+        </finder>
+        <finder name="Status_G" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="status"></finder-column>
+        </finder>
+        <finder name="Status_U" return-type="Collection">
+            <finder-column name="userId"></finder-column>
+            <finder-column name="status"></finder-column>
+        </finder>
+        <finder name="Status_G_U" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="userId"></finder-column>
+            <finder-column name="status"></finder-column>
+        </finder>
+        <finder name="QueueName" return-type="Collection">
+            <finder-column name="queueName"></finder-column>
+        </finder>
+        <finder name="JobStatus" return-type="Collection">
+            <finder-column name="jobStatus"></finder-column>
+        </finder>
+        <finder name="JobStatus_G" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="jobStatus"></finder-column>
+        </finder>
+        <finder name="JobStatus_U" return-type="Collection">
+            <finder-column name="userId"></finder-column>
+            <finder-column name="jobStatus"></finder-column>
+        </finder>
+        <finder name="JobStatus_G_U" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="userId"></finder-column>
+            <finder-column name="jobStatus"></finder-column>
+        </finder>
+        <finder name="Title" return-type="Collection">
+            <finder-column name="title" comparator="LIKE"></finder-column>
+        </finder>
+        <finder name="Title_G" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="title" comparator="LIKE"></finder-column>
+        </finder>
+        <finder name="Title_U" return-type="Collection">
+            <finder-column name="userId"></finder-column>
+            <finder-column name="title" comparator="LIKE"></finder-column>
+        </finder>
+        <finder name="Title_G_U" return-type="Collection">
+        	<finder-column name="groupId"></finder-column>
+            <finder-column name="userId"></finder-column>
+            <finder-column name="title" comparator="LIKE"></finder-column>
+        </finder>
+        <finder name="ClusterId" return-type="Collection">
+            <finder-column name="clusterId"></finder-column>
+        </finder>
+        <finder name="ClusterId_G" return-type="Collection">
+        	<finder-column name="groupId"></finder-column>
+            <finder-column name="clusterId"></finder-column>
+        </finder>
+        <finder name="ClusterId_U" return-type="Collection">
+        	<finder-column name="userId"></finder-column>
+            <finder-column name="clusterId"></finder-column>
+        </finder>
+        <finder name="ClusterId_G_U" return-type="Collection">
+        	<finder-column name="groupId"></finder-column>
+        	<finder-column name="userId"></finder-column>
+            <finder-column name="clusterId"></finder-column>
+        </finder>
+        <finder name="RunType" return-type="Collection">
+            <finder-column name="runType"></finder-column>
+        </finder>
+        <finder name="RunType_G" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="runType"></finder-column>
+        </finder>
+        <finder name="RunType_U" return-type="Collection">
+            <finder-column name="userId"></finder-column>
+            <finder-column name="runType"></finder-column>
+        </finder>
+        <finder name="RunType_G_U" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="userId"></finder-column>
+            <finder-column name="runType"></finder-column>
+        </finder>
+        
+        <reference entity="AssetEntry" package-path="com.liferay.portlet.asset"/>
+        <reference entity="AssetLink" package-path="com.liferay.portlet.asset"/>
+        <reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+    </entity>
+    
+    <entity name="JobData" local-service="true" remote-service="false">
+    	<column name="jobId" type="long" primary="true"></column>
+    	<column name="inputData" type="String"></column>
+    </entity>
+    
+    <entity local-service="true" name="IcebreakerEntry" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="icebreakerEntryId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		<column name="status" type="int" />
+		
+
+		<!-- Other fields -->
+		<column name="name" type="String" />
+		<column name="type" type="String" />
+		<column name="ibIp" type="String" />
+		<column name="ibPort" type="String" />
+		<column name="ibUserId" type="String" />
+		<column name="ibUserPassword" type="String" />
+		<column name="description" type="String"  localized="true"/>
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+        <finder name="GroupId" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="UserId" return-type="Collection">
+            <finder-column name="userId"></finder-column>
+        </finder>
+        <finder name="Status" return-type="int">
+            <finder-column name="status"></finder-column>
+        </finder>
+        <finder name="_G_S" return-type="Collection">
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="status"></finder-column>
+        </finder>
+        <finder name="Type" return-type="int">
+            <finder-column name="type"></finder-column>
+        </finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetLink" package-path="com.liferay.portlet.asset"/>
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+    <exceptions>
+    </exceptions>
+</service-builder>

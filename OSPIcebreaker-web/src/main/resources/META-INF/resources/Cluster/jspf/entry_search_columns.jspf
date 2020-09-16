@@ -1,0 +1,120 @@
+<%-- Generate assignment view  URL. --%>
+
+<%@page import="com.osp.icebreaker.constants.MVCCommandNames"%>
+<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
+<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
+
+<portlet:renderURL var="viewClusterURL">
+	<portlet:param name="mvcRenderCommandName" value="<%=MVCCommandNames.VIEW_CLUSTER %>" />
+	<portlet:param name="redirect" value="${currentURL}" />
+	<portlet:param name="clusterId" value="${cluster.clusterId}" />
+</portlet:renderURL>
+
+<c:choose>
+
+	<%-- Descriptive (list) view --%>
+
+	<c:when
+		test='${clustersManagementToolbarDisplayContext.getDisplayStyle().equals("descriptive")}'>
+
+		<%-- User --%>
+
+		<liferay-ui:search-container-column-user 
+			showDetails="<%=false%>"
+			userId="<%=cluster.getUserId()%>" 
+		/>
+
+		<liferay-ui:search-container-column-text colspan="<%=2%>">
+
+			<%
+				String modifiedDateDescription =
+					LanguageUtil.getTimeDescription(
+							request, System.currentTimeMillis() 
+							- cluster.getModifiedDate().getTime(), true);
+			%>
+
+			<h5 class="text-default">
+				<liferay-ui:message
+					arguments="<%=new String[] {cluster.getUserName(), modifiedDateDescription}%>"
+					key="x-modified-x-ago" />
+			</h5>
+
+			<h4>
+				<aui:a href="${viewClusterURL}">
+					${cluster.getClusterName()}
+				</aui:a>
+			</h4>
+
+		</liferay-ui:search-container-column-text>
+
+		<liferay-ui:search-container-column-jsp
+			path="/ClusterAdmin/entry_actions.jsp" />
+	</c:when>
+
+	<%-- Card view  --%>
+
+	<c:when
+		test='${clusterssManagementToolbarDisplayContext.getDisplayStyle().equals("icon")}'>
+
+		<%
+			row.setCssClass("lfr-asset-item");
+		%>
+
+		<liferay-ui:search-container-column-text>
+
+			<%-- Vertical card. --%>
+
+			<liferay-frontend:icon-vertical-card
+				actionJsp="/ClusterAdmin/entry_actions.jsp"
+				actionJspServletContext="<%= application %>" 
+				icon="cards2" resultRow="${row}"
+				title="${cluster.getClusterName()}" 
+				url="${viewClusterURL}">
+
+				<liferay-frontend:vertical-card-sticker-bottom>
+				
+					<liferay-ui:user-portrait 
+						cssClass="sticker sticker-bottom"
+						userId="${cluster.userId}" 
+					/>
+				</liferay-frontend:vertical-card-sticker-bottom>
+
+				<liferay-frontend:vertical-card-footer>
+				  
+				  	<div class="truncate-text">
+				  	
+				  		<%-- Strip HTML --%>
+				  		
+				  		<%=HtmlUtil.stripHtml(cluster.getDescription(locale)) %>
+				  	</div>
+				</liferay-frontend:vertical-card-footer>
+			</liferay-frontend:icon-vertical-card>
+		</liferay-ui:search-container-column-text>
+	</c:when>
+	
+	<%-- Table view --%>
+
+	<c:otherwise>
+	
+		<liferay-ui:search-container-column-text 
+			href="${viewClusterURL}" 
+			name="title" 
+			value="<%= cluster.getClusterName() %>" 
+		/>
+
+		<liferay-ui:search-container-column-user 
+			name="author" 
+			userId="${cluster.userId}" 
+		/>
+
+		<liferay-ui:search-container-column-date 
+			name="create-date"
+			property="createDate" 
+		/>
+
+		<liferay-ui:search-container-column-jsp 
+			name="actions"
+			path="/ClusterAdmin/entry_actions.jsp" 
+		/>
+	</c:otherwise>
+</c:choose>
