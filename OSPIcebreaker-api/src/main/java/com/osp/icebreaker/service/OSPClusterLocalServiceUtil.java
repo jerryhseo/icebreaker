@@ -14,7 +14,6 @@
 
 package com.osp.icebreaker.service;
 
-import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
@@ -31,7 +30,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see OSPClusterLocalService
  * @generated
  */
-@ProviderType
 public class OSPClusterLocalServiceUtil {
 
 	/*
@@ -40,25 +38,22 @@ public class OSPClusterLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>com.osp.icebreaker.service.impl.OSPClusterLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.osp.icebreaker.model.OSPCluster addCluster(
-		com.osp.icebreaker.model.OSPCluster cluster) {
-
-		return getService().addCluster(cluster);
-	}
-
-	public static com.osp.icebreaker.model.OSPCluster addCluster(
-		String clusterName, String osFamily, String osName, String osVersion,
-		String appRootDir, String dataRootDir, String contentRootDir,
-		java.util.Map<java.util.Locale, String> descriptionMap, String serverIp,
-		String accessMethod, String sshPort, String authorizedId,
-		String authorizedPassword, String schedulerName,
-		String schedulerVersion, String schedulerClass,
-		com.liferay.portal.kernel.service.ServiceContext sc) {
+			String clusterName, String osFamily, String osName,
+			String osVersion, String appRootDir,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			String serverIp, String sshPort, String identificationCommand,
+			String accessMethod, String authorizedId, String authorizedPassword,
+			String schedulerName, String schedulerVersion,
+			String schedulerClass,
+			com.osp.icebreaker.constants.OSPClusterSecurityLevels securityLevel,
+			com.liferay.portal.kernel.service.ServiceContext sc)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addCluster(
-			clusterName, osFamily, osName, osVersion, appRootDir, dataRootDir,
-			contentRootDir, descriptionMap, serverIp, accessMethod, sshPort,
-			authorizedId, authorizedPassword, schedulerName, schedulerVersion,
-			schedulerClass, sc);
+			clusterName, osFamily, osName, osVersion, appRootDir,
+			descriptionMap, serverIp, sshPort, identificationCommand,
+			accessMethod, authorizedId, authorizedPassword, schedulerName,
+			schedulerVersion, schedulerClass, securityLevel, sc);
 	}
 
 	/**
@@ -75,13 +70,6 @@ public class OSPClusterLocalServiceUtil {
 
 	public static int countClusters() {
 		return getService().countClusters();
-	}
-
-	public static com.osp.icebreaker.model.OSPCluster createCluster(
-		String clusterName,
-		com.liferay.portal.kernel.service.ServiceContext sc) {
-
-		return getService().createCluster(clusterName, sc);
 	}
 
 	/**
@@ -104,11 +92,12 @@ public class OSPClusterLocalServiceUtil {
 	}
 
 	public static com.osp.icebreaker.model.OSPScheduler createOSPScheduler(
-		String className, String user, String password, String ip,
-		String port) {
+		String className, String identificationCommand, String accessMethod,
+		String authorizedUserId, String password, String ip, String port) {
 
 		return getService().createOSPScheduler(
-			className, user, password, ip, port);
+			className, identificationCommand, accessMethod, authorizedUserId,
+			password, ip, port);
 	}
 
 	/**
@@ -170,7 +159,7 @@ public class OSPClusterLocalServiceUtil {
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
@@ -189,7 +178,7 @@ public class OSPClusterLocalServiceUtil {
 	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
@@ -276,26 +265,6 @@ public class OSPClusterLocalServiceUtil {
 		return getService().getClusters(start, end);
 	}
 
-	public static java.util.List<com.osp.icebreaker.model.OSPCluster>
-		getClusters(
-			int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<com.osp.icebreaker.model.OSPCluster> orderByComparator) {
-
-		return getService().getClusters(start, end, orderByComparator);
-	}
-
-	public static java.util.List<com.osp.icebreaker.model.OSPCluster>
-		getClusters(
-			int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<com.osp.icebreaker.model.OSPCluster> orderByComparator,
-			boolean retrieveFromCache) {
-
-		return getService().getClusters(
-			start, end, orderByComparator, retrieveFromCache);
-	}
-
 	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery
 		getExportActionableDynamicQuery(
 			com.liferay.exportimport.kernel.lar.PortletDataContext
@@ -353,7 +322,7 @@ public class OSPClusterLocalServiceUtil {
 	 * Returns a range of all the osp clusters.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of osp clusters
@@ -408,6 +377,9 @@ public class OSPClusterLocalServiceUtil {
 		return getService().getOSPClustersCount();
 	}
 
+	/**
+	 * @throws PortalException
+	 */
 	public static com.liferay.portal.kernel.model.PersistedModel
 			getPersistedModel(java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -429,9 +401,22 @@ public class OSPClusterLocalServiceUtil {
 	}
 
 	public static com.osp.icebreaker.model.OSPCluster updateCluster(
-		com.osp.icebreaker.model.OSPCluster cluster) {
+			long clusterId, String clusterName, String osFamily, String osName,
+			String osVersion, String appRootDir,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			String serverIp, String sshPort, String identificationCommand,
+			String accessMethod, String authorizedId, String authorizedPassword,
+			String schedulerName, String schedulerVersion,
+			String schedulerClass,
+			com.osp.icebreaker.constants.OSPClusterSecurityLevels securityLevel,
+			com.liferay.portal.kernel.service.ServiceContext sc)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().updateCluster(cluster);
+		return getService().updateCluster(
+			clusterId, clusterName, osFamily, osName, osVersion, appRootDir,
+			descriptionMap, serverIp, sshPort, identificationCommand,
+			accessMethod, authorizedId, authorizedPassword, schedulerName,
+			schedulerVersion, schedulerClass, securityLevel, sc);
 	}
 
 	/**

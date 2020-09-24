@@ -17,8 +17,6 @@ package com.osp.icebreaker.model.impl;
 import com.osp.icebreaker.model.Job;
 import com.osp.icebreaker.service.JobLocalServiceUtil;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The extended model base implementation for the Job service. Represents a row in the &quot;ICEBREAKER_Job&quot; database table, with each column mapped to a property of this class.
  *
@@ -31,7 +29,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see Job
  * @generated
  */
-@ProviderType
 public abstract class JobBaseImpl extends JobModelImpl implements Job {
 
 	/*

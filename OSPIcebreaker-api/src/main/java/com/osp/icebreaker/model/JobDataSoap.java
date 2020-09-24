@@ -19,15 +19,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * This class is used by SOAP remote services.
  *
  * @author Jerry H. Seo
  * @generated
  */
-@ProviderType
 public class JobDataSoap implements Serializable {
 
 	public static JobDataSoap toSoapModel(JobData model) {

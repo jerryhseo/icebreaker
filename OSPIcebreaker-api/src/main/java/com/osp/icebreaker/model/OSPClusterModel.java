@@ -298,36 +298,6 @@ public interface OSPClusterModel
 	public void setAppRootDir(String appRootDir);
 
 	/**
-	 * Returns the data root dir of this osp cluster.
-	 *
-	 * @return the data root dir of this osp cluster
-	 */
-	@AutoEscape
-	public String getDataRootDir();
-
-	/**
-	 * Sets the data root dir of this osp cluster.
-	 *
-	 * @param dataRootDir the data root dir of this osp cluster
-	 */
-	public void setDataRootDir(String dataRootDir);
-
-	/**
-	 * Returns the content root dir of this osp cluster.
-	 *
-	 * @return the content root dir of this osp cluster
-	 */
-	@AutoEscape
-	public String getContentRootDir();
-
-	/**
-	 * Sets the content root dir of this osp cluster.
-	 *
-	 * @param contentRootDir the content root dir of this osp cluster
-	 */
-	public void setContentRootDir(String contentRootDir);
-
-	/**
 	 * Returns the description of this osp cluster.
 	 *
 	 * @return the description of this osp cluster
@@ -459,6 +429,21 @@ public interface OSPClusterModel
 	public void setSshPort(String sshPort);
 
 	/**
+	 * Returns the identification command of this osp cluster.
+	 *
+	 * @return the identification command of this osp cluster
+	 */
+	@AutoEscape
+	public String getIdentificationCommand();
+
+	/**
+	 * Sets the identification command of this osp cluster.
+	 *
+	 * @param identificationCommand the identification command of this osp cluster
+	 */
+	public void setIdentificationCommand(String identificationCommand);
+
+	/**
 	 * Returns the access method of this osp cluster.
 	 *
 	 * @return the access method of this osp cluster
@@ -561,6 +546,21 @@ public interface OSPClusterModel
 	 * @param schedulerStatus the scheduler status of this osp cluster
 	 */
 	public void setSchedulerStatus(int schedulerStatus);
+
+	/**
+	 * Returns the secutity level of this osp cluster.
+	 *
+	 * @return the secutity level of this osp cluster
+	 */
+	@AutoEscape
+	public String getSecutityLevel();
+
+	/**
+	 * Sets the secutity level of this osp cluster.
+	 *
+	 * @param secutityLevel the secutity level of this osp cluster
+	 */
+	public void setSecutityLevel(String secutityLevel);
 
 	@Override
 	public String[] getAvailableLanguageIds();

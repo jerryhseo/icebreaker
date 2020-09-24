@@ -14,8 +14,6 @@
 
 package com.osp.icebreaker.service.http;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * Provides the HTTP utility for the
  * <code>com.osp.icebreaker.service.JobServiceUtil</code> service
@@ -43,6 +41,5 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see JobServiceSoap
  * @generated
  */
-@ProviderType
 public class JobServiceHttp {
 }

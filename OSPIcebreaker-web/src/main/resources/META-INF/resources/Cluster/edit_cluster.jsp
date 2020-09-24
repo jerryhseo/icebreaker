@@ -5,14 +5,14 @@
 
  <c:choose>
      <c:when test="${not empty cluster}">
-         <portlet:actionURL var="clusterActionURL" name="<%=MVCCommandNames.EDIT_CLUSTER %>">
+         <portlet:actionURL var="clusterActionURL" name="<%=OSPIcebreakerWebMVCCommandNames.EDIT_CLUSTER%>">
              <portlet:param name="redirect" value="${param.redirect}" />
          </portlet:actionURL>
 
          <c:set var="editTitle" value="edit-cluster"/>
      </c:when>
      <c:otherwise>
-         <portlet:actionURL var="clusterActionURL" name="<%=MVCCommandNames.ADD_CLUSTER %>">
+         <portlet:actionURL var="clusterActionURL" name="<%=OSPIcebreakerWebMVCCommandNames.ADD_CLUSTER%>">
              <portlet:param name="redirect" value="${param.redirect}" />
          </portlet:actionURL>
 

@@ -76,4 +76,15 @@ public interface OSPCluster extends OSPClusterModel, PersistedModel {
 
 		};
 
+	public void setAttributes(
+		String clusterName, String osFamily, String osName, String osVersion,
+		String appRootDir,
+		java.util.Map<java.util.Locale, String> descriptionMap, String serverIp,
+		String sshPort, String identificationCommand, String accessMethod,
+		String authorizedId, String authorizedPassword, String schedulerName,
+		String schedulerVersion, String schedulerClass, int schedulerStatus,
+		String securityLevel, long companyId, long groupId, long userId,
+		String userName, java.util.Date createDate, java.util.Date modifiedDate,
+		int status);
+
 }

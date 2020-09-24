@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.util.MethodKey;
 
 import com.osp.icebreaker.service.OSPClusterServiceUtil;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * Provides the HTTP utility for the
  * <code>OSPClusterServiceUtil</code> service
@@ -52,12 +50,20 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see OSPClusterServiceSoap
  * @generated
  */
-@ProviderType
 public class OSPClusterServiceHttp {
 
 	public static com.osp.icebreaker.model.OSPCluster addCluster(
-		HttpPrincipal httpPrincipal, String clusterName,
-		com.liferay.portal.kernel.service.ServiceContext sc) {
+			HttpPrincipal httpPrincipal, String clusterName, String osFamily,
+			String osName, String osVersion, String appRootDir,
+			String dataRootDir, String contentRootDir,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			String serverIp, String sshPort, String identificationCommand,
+			String accessMethod, String authorizedId, String authorizedPassword,
+			String schedulerName, String schedulerVersion,
+			String schedulerClass,
+			com.osp.icebreaker.constants.OSPClusterSecurityLevels securityLevel,
+			com.liferay.portal.kernel.service.ServiceContext sc)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -65,64 +71,37 @@ public class OSPClusterServiceHttp {
 				_addClusterParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, clusterName, sc);
-
-			Object returnObj = null;
-
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
-			}
-			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
-			}
-
-			return (com.osp.icebreaker.model.OSPCluster)returnObj;
-		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
-	public static com.osp.icebreaker.model.OSPCluster addCluster(
-		HttpPrincipal httpPrincipal, String clusterName, String osFamily,
-		String osName, String osVersion, String appRootDir, String dataRootDir,
-		String contentRootDir,
-		java.util.Map<java.util.Locale, String> descriptionMap, String serverIp,
-		String accessMethod, String sshPort, String authorizedId,
-		String authorizedPassword, String schedulerName,
-		String schedulerVersion, String schedulerClass,
-		com.liferay.portal.kernel.service.ServiceContext sc) {
-
-		try {
-			MethodKey methodKey = new MethodKey(
-				OSPClusterServiceUtil.class, "addCluster",
-				_addClusterParameterTypes1);
-
-			MethodHandler methodHandler = new MethodHandler(
 				methodKey, clusterName, osFamily, osName, osVersion, appRootDir,
-				dataRootDir, contentRootDir, descriptionMap, serverIp,
-				accessMethod, sshPort, authorizedId, authorizedPassword,
-				schedulerName, schedulerVersion, schedulerClass, sc);
+				dataRootDir, contentRootDir, descriptionMap, serverIp, sshPort,
+				identificationCommand, accessMethod, authorizedId,
+				authorizedPassword, schedulerName, schedulerVersion,
+				schedulerClass, securityLevel, sc);
 
 			Object returnObj = null;
 
 			try {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
 				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
+					exception);
 			}
 
 			return (com.osp.icebreaker.model.OSPCluster)returnObj;
 		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
 
-			throw se;
+			_log.error(systemException, systemException);
+
+			throw systemException;
 		}
 	}
 
@@ -133,7 +112,7 @@ public class OSPClusterServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				OSPClusterServiceUtil.class, "deleteCluster",
-				_deleteClusterParameterTypes2);
+				_deleteClusterParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, clusterId);
@@ -143,63 +122,26 @@ public class OSPClusterServiceHttp {
 			try {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
-			catch (Exception e) {
-				if (e instanceof
+			catch (Exception exception) {
+				if (exception instanceof
 						com.liferay.portal.kernel.exception.PortalException) {
 
 					throw (com.liferay.portal.kernel.exception.PortalException)
-						e;
+						exception;
 				}
 
 				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
+					exception);
 			}
 
 			return (com.osp.icebreaker.model.OSPCluster)returnObj;
 		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
 
-			throw se;
-		}
-	}
+			_log.error(systemException, systemException);
 
-	public static com.osp.icebreaker.model.OSPCluster updateCluster(
-			HttpPrincipal httpPrincipal, long clusterId,
-			com.liferay.portal.kernel.service.ServiceContext sc)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		try {
-			MethodKey methodKey = new MethodKey(
-				OSPClusterServiceUtil.class, "updateCluster",
-				_updateClusterParameterTypes3);
-
-			MethodHandler methodHandler = new MethodHandler(
-				methodKey, clusterId, sc);
-
-			Object returnObj = null;
-
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
-			}
-			catch (Exception e) {
-				if (e instanceof
-						com.liferay.portal.kernel.exception.PortalException) {
-
-					throw (com.liferay.portal.kernel.exception.PortalException)
-						e;
-				}
-
-				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
-			}
-
-			return (com.osp.icebreaker.model.OSPCluster)returnObj;
-		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
+			throw systemException;
 		}
 	}
 
@@ -210,7 +152,7 @@ public class OSPClusterServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				OSPClusterServiceUtil.class, "getCluster",
-				_getClusterParameterTypes4);
+				_getClusterParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, clusterId);
@@ -220,24 +162,26 @@ public class OSPClusterServiceHttp {
 			try {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
-			catch (Exception e) {
-				if (e instanceof
+			catch (Exception exception) {
+				if (exception instanceof
 						com.liferay.portal.kernel.exception.PortalException) {
 
 					throw (com.liferay.portal.kernel.exception.PortalException)
-						e;
+						exception;
 				}
 
 				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
+					exception);
 			}
 
 			return (com.osp.icebreaker.model.OSPCluster)returnObj;
 		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
 
-			throw se;
+			_log.error(systemException, systemException);
+
+			throw systemException;
 		}
 	}
 
@@ -247,7 +191,7 @@ public class OSPClusterServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				OSPClusterServiceUtil.class, "getCluster",
-				_getClusterParameterTypes5);
+				_getClusterParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, clusterName);
@@ -257,17 +201,19 @@ public class OSPClusterServiceHttp {
 			try {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				throw new com.liferay.portal.kernel.exception.SystemException(
-					e);
+					exception);
 			}
 
 			return (com.osp.icebreaker.model.OSPCluster)returnObj;
 		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
 
-			throw se;
+			_log.error(systemException, systemException);
+
+			throw systemException;
 		}
 	}
 
@@ -275,25 +221,19 @@ public class OSPClusterServiceHttp {
 		OSPClusterServiceHttp.class);
 
 	private static final Class<?>[] _addClusterParameterTypes0 = new Class[] {
-		String.class, com.liferay.portal.kernel.service.ServiceContext.class
-	};
-	private static final Class<?>[] _addClusterParameterTypes1 = new Class[] {
 		String.class, String.class, String.class, String.class, String.class,
 		String.class, String.class, java.util.Map.class, String.class,
 		String.class, String.class, String.class, String.class, String.class,
-		String.class, String.class,
+		String.class, String.class, String.class,
+		com.osp.icebreaker.constants.OSPClusterSecurityLevels.class,
 		com.liferay.portal.kernel.service.ServiceContext.class
 	};
-	private static final Class<?>[] _deleteClusterParameterTypes2 =
+	private static final Class<?>[] _deleteClusterParameterTypes1 =
 		new Class[] {long.class};
-	private static final Class<?>[] _updateClusterParameterTypes3 =
-		new Class[] {
-			long.class, com.liferay.portal.kernel.service.ServiceContext.class
-		};
-	private static final Class<?>[] _getClusterParameterTypes4 = new Class[] {
+	private static final Class<?>[] _getClusterParameterTypes2 = new Class[] {
 		long.class
 	};
-	private static final Class<?>[] _getClusterParameterTypes5 = new Class[] {
+	private static final Class<?>[] _getClusterParameterTypes3 = new Class[] {
 		String.class
 	};
 

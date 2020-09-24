@@ -75,11 +75,10 @@
 		<field name="osName" type="String" />
 		<field name="osVersion" type="String" />
 		<field name="appRootDir" type="String" />
-		<field name="dataRootDir" type="String" />
-		<field name="contentRootDir" type="String" />
 		<field localized="true" name="description" type="String" />
 		<field name="serverIp" type="String" />
 		<field name="sshPort" type="String" />
+		<field name="identificationCommand" type="String" />
 		<field name="accessMethod" type="String" />
 		<field name="authorizedId" type="String" />
 		<field name="authorizedPassword" type="String" />
@@ -87,5 +86,6 @@
 		<field name="schedulerVersion" type="String" />
 		<field name="schedulerClass" type="String" />
 		<field name="schedulerStatus" type="int" />
+		<field name="secutityLevel" type="String" />
 	</model>
 </model-hints>

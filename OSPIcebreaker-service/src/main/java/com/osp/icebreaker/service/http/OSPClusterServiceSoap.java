@@ -25,8 +25,6 @@ import java.rmi.RemoteException;
 import java.util.Locale;
 import java.util.Map;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * Provides the SOAP utility for the
  * <code>OSPClusterServiceUtil</code> service
@@ -66,36 +64,18 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see OSPClusterServiceHttp
  * @generated
  */
-@ProviderType
 public class OSPClusterServiceSoap {
-
-	public static com.osp.icebreaker.model.OSPClusterSoap addCluster(
-			String clusterName,
-			com.liferay.portal.kernel.service.ServiceContext sc)
-		throws RemoteException {
-
-		try {
-			com.osp.icebreaker.model.OSPCluster returnValue =
-				OSPClusterServiceUtil.addCluster(clusterName, sc);
-
-			return com.osp.icebreaker.model.OSPClusterSoap.toSoapModel(
-				returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
 
 	public static com.osp.icebreaker.model.OSPClusterSoap addCluster(
 			String clusterName, String osFamily, String osName,
 			String osVersion, String appRootDir, String dataRootDir,
 			String contentRootDir, String[] descriptionMapLanguageIds,
-			String[] descriptionMapValues, String serverIp, String accessMethod,
-			String sshPort, String authorizedId, String authorizedPassword,
+			String[] descriptionMapValues, String serverIp, String sshPort,
+			String identificationCommand, String accessMethod,
+			String authorizedId, String authorizedPassword,
 			String schedulerName, String schedulerVersion,
 			String schedulerClass,
+			com.osp.icebreaker.constants.OSPClusterSecurityLevels securityLevel,
 			com.liferay.portal.kernel.service.ServiceContext sc)
 		throws RemoteException {
 
@@ -108,16 +88,17 @@ public class OSPClusterServiceSoap {
 				OSPClusterServiceUtil.addCluster(
 					clusterName, osFamily, osName, osVersion, appRootDir,
 					dataRootDir, contentRootDir, descriptionMap, serverIp,
-					accessMethod, sshPort, authorizedId, authorizedPassword,
-					schedulerName, schedulerVersion, schedulerClass, sc);
+					sshPort, identificationCommand, accessMethod, authorizedId,
+					authorizedPassword, schedulerName, schedulerVersion,
+					schedulerClass, securityLevel, sc);
 
 			return com.osp.icebreaker.model.OSPClusterSoap.toSoapModel(
 				returnValue);
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 
-			throw new RemoteException(e.getMessage());
+			throw new RemoteException(exception.getMessage());
 		}
 	}
 
@@ -132,28 +113,10 @@ public class OSPClusterServiceSoap {
 			return com.osp.icebreaker.model.OSPClusterSoap.toSoapModel(
 				returnValue);
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static com.osp.icebreaker.model.OSPClusterSoap updateCluster(
-			long clusterId, com.liferay.portal.kernel.service.ServiceContext sc)
-		throws RemoteException {
-
-		try {
-			com.osp.icebreaker.model.OSPCluster returnValue =
-				OSPClusterServiceUtil.updateCluster(clusterId, sc);
-
-			return com.osp.icebreaker.model.OSPClusterSoap.toSoapModel(
-				returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
+			throw new RemoteException(exception.getMessage());
 		}
 	}
 
@@ -168,10 +131,10 @@ public class OSPClusterServiceSoap {
 			return com.osp.icebreaker.model.OSPClusterSoap.toSoapModel(
 				returnValue);
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 
-			throw new RemoteException(e.getMessage());
+			throw new RemoteException(exception.getMessage());
 		}
 	}
 
@@ -186,10 +149,10 @@ public class OSPClusterServiceSoap {
 			return com.osp.icebreaker.model.OSPClusterSoap.toSoapModel(
 				returnValue);
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 
-			throw new RemoteException(e.getMessage());
+			throw new RemoteException(exception.getMessage());
 		}
 	}
 

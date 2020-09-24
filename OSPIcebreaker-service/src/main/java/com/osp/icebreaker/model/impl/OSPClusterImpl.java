@@ -14,6 +14,10 @@
 
 package com.osp.icebreaker.model.impl;
 
+import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -28,12 +32,57 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public class OSPClusterImpl extends OSPClusterBaseImpl {
 
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a osp cluster model instance should use the {@link com.osp.icebreaker.model.OSPCluster} interface instead.
-	 */
 	public OSPClusterImpl() {
 	}
 
+	public void setAttributes(
+			String clusterName,
+			String osFamily, 
+			String osName, 
+			String osVersion, 
+			String appRootDir, 
+			Map<Locale, String> descriptionMap, 
+			String serverIp, 
+			String sshPort, 
+			String identificationCommand,
+			String accessMethod, 
+			String authorizedId, 
+			String authorizedPassword, 
+			String schedulerName, 
+			String schedulerVersion, 
+			String schedulerClass,
+			int schedulerStatus,
+			String securityLevel,
+			long companyId,
+			long groupId,
+			long userId,
+			String userName,
+			Date createDate,
+			Date modifiedDate,
+			int status
+			) {
+		
+		this.setClusterName(clusterName);
+		this.setOsFamily(osFamily);
+		this.setOsName(osName);
+		this.setOsVersion(osVersion);
+		this.setAppRootDir(appRootDir);
+		this.setDescriptionMap(descriptionMap);
+		this.setServerIp(serverIp);
+		this.setAccessMethod(accessMethod);
+		this.setSshPort(sshPort);
+		this.setAuthorizedId(authorizedId);
+		this.setAuthorizedPassword(authorizedPassword);
+		this.setSchedulerName(schedulerName);
+		this.setSchedulerVersion(schedulerVersion);
+		this.setSchedulerStatus(schedulerStatus);
+		this.setSchedulerClass(schedulerClass);
+		this.setCompanyId(companyId);
+		this.setGroupId(groupId);
+		this.setUserId(userId);
+		this.setUserName(userName);
+		this.setCreateDate(createDate);
+		this.setModifiedDate(modifiedDate);
+		this.setStatus(status);
+	}
 }

@@ -1,7 +1,7 @@
 <%@ include file="../init.jsp"%>
 
 <portlet:renderURL var="addClusterURL">
-	<portlet:param name="mvcRenderCommand" value="<%= MVCCommandNames.EDIT_CLUSTER %>"></portlet:param>
+	<portlet:param name="mvcRenderCommand" value="<%=OSPIcebreakerWebMVCCommandNames.EDIT_CLUSTER%>"></portlet:param>
 </portlet:renderURL>
 
 <div class="container-fluid-1280">

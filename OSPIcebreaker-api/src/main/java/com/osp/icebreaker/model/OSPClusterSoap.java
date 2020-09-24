@@ -20,15 +20,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * This class is used by SOAP remote services, specifically {@link com.osp.icebreaker.service.http.OSPClusterServiceSoap}.
  *
  * @author Jerry H. Seo
  * @generated
  */
-@ProviderType
 public class OSPClusterSoap implements Serializable {
 
 	public static OSPClusterSoap toSoapModel(OSPCluster model) {
@@ -48,11 +45,10 @@ public class OSPClusterSoap implements Serializable {
 		soapModel.setOsName(model.getOsName());
 		soapModel.setOsVersion(model.getOsVersion());
 		soapModel.setAppRootDir(model.getAppRootDir());
-		soapModel.setDataRootDir(model.getDataRootDir());
-		soapModel.setContentRootDir(model.getContentRootDir());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setServerIp(model.getServerIp());
 		soapModel.setSshPort(model.getSshPort());
+		soapModel.setIdentificationCommand(model.getIdentificationCommand());
 		soapModel.setAccessMethod(model.getAccessMethod());
 		soapModel.setAuthorizedId(model.getAuthorizedId());
 		soapModel.setAuthorizedPassword(model.getAuthorizedPassword());
@@ -60,6 +56,7 @@ public class OSPClusterSoap implements Serializable {
 		soapModel.setSchedulerVersion(model.getSchedulerVersion());
 		soapModel.setSchedulerClass(model.getSchedulerClass());
 		soapModel.setSchedulerStatus(model.getSchedulerStatus());
+		soapModel.setSecutityLevel(model.getSecutityLevel());
 
 		return soapModel;
 	}
@@ -225,22 +222,6 @@ public class OSPClusterSoap implements Serializable {
 		_appRootDir = appRootDir;
 	}
 
-	public String getDataRootDir() {
-		return _dataRootDir;
-	}
-
-	public void setDataRootDir(String dataRootDir) {
-		_dataRootDir = dataRootDir;
-	}
-
-	public String getContentRootDir() {
-		return _contentRootDir;
-	}
-
-	public void setContentRootDir(String contentRootDir) {
-		_contentRootDir = contentRootDir;
-	}
-
 	public String getDescription() {
 		return _description;
 	}
@@ -263,6 +244,14 @@ public class OSPClusterSoap implements Serializable {
 
 	public void setSshPort(String sshPort) {
 		_sshPort = sshPort;
+	}
+
+	public String getIdentificationCommand() {
+		return _identificationCommand;
+	}
+
+	public void setIdentificationCommand(String identificationCommand) {
+		_identificationCommand = identificationCommand;
 	}
 
 	public String getAccessMethod() {
@@ -321,6 +310,14 @@ public class OSPClusterSoap implements Serializable {
 		_schedulerStatus = schedulerStatus;
 	}
 
+	public String getSecutityLevel() {
+		return _secutityLevel;
+	}
+
+	public void setSecutityLevel(String secutityLevel) {
+		_secutityLevel = secutityLevel;
+	}
+
 	private String _uuid;
 	private long _clusterId;
 	private long _companyId;
@@ -335,11 +332,10 @@ public class OSPClusterSoap implements Serializable {
 	private String _osName;
 	private String _osVersion;
 	private String _appRootDir;
-	private String _dataRootDir;
-	private String _contentRootDir;
 	private String _description;
 	private String _serverIp;
 	private String _sshPort;
+	private String _identificationCommand;
 	private String _accessMethod;
 	private String _authorizedId;
 	private String _authorizedPassword;
@@ -347,5 +343,6 @@ public class OSPClusterSoap implements Serializable {
 	private String _schedulerVersion;
 	private String _schedulerClass;
 	private int _schedulerStatus;
+	private String _secutityLevel;
 
 }

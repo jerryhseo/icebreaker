@@ -27,15 +27,12 @@ import java.io.ObjectOutput;
 
 import java.util.Date;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The cache model class for representing OSPCluster in entity cache.
  *
  * @author Jerry H. Seo
  * @generated
  */
-@ProviderType
 public class OSPClusterCacheModel
 	implements CacheModel<OSPCluster>, Externalizable {
 
@@ -95,16 +92,14 @@ public class OSPClusterCacheModel
 		sb.append(osVersion);
 		sb.append(", appRootDir=");
 		sb.append(appRootDir);
-		sb.append(", dataRootDir=");
-		sb.append(dataRootDir);
-		sb.append(", contentRootDir=");
-		sb.append(contentRootDir);
 		sb.append(", description=");
 		sb.append(description);
 		sb.append(", serverIp=");
 		sb.append(serverIp);
 		sb.append(", sshPort=");
 		sb.append(sshPort);
+		sb.append(", identificationCommand=");
+		sb.append(identificationCommand);
 		sb.append(", accessMethod=");
 		sb.append(accessMethod);
 		sb.append(", authorizedId=");
@@ -119,6 +114,8 @@ public class OSPClusterCacheModel
 		sb.append(schedulerClass);
 		sb.append(", schedulerStatus=");
 		sb.append(schedulerStatus);
+		sb.append(", secutityLevel=");
+		sb.append(secutityLevel);
 		sb.append("}");
 
 		return sb.toString();
@@ -198,20 +195,6 @@ public class OSPClusterCacheModel
 			ospClusterImpl.setAppRootDir(appRootDir);
 		}
 
-		if (dataRootDir == null) {
-			ospClusterImpl.setDataRootDir("");
-		}
-		else {
-			ospClusterImpl.setDataRootDir(dataRootDir);
-		}
-
-		if (contentRootDir == null) {
-			ospClusterImpl.setContentRootDir("");
-		}
-		else {
-			ospClusterImpl.setContentRootDir(contentRootDir);
-		}
-
 		if (description == null) {
 			ospClusterImpl.setDescription("");
 		}
@@ -231,6 +214,13 @@ public class OSPClusterCacheModel
 		}
 		else {
 			ospClusterImpl.setSshPort(sshPort);
+		}
+
+		if (identificationCommand == null) {
+			ospClusterImpl.setIdentificationCommand("");
+		}
+		else {
+			ospClusterImpl.setIdentificationCommand(identificationCommand);
 		}
 
 		if (accessMethod == null) {
@@ -277,6 +267,13 @@ public class OSPClusterCacheModel
 
 		ospClusterImpl.setSchedulerStatus(schedulerStatus);
 
+		if (secutityLevel == null) {
+			ospClusterImpl.setSecutityLevel("");
+		}
+		else {
+			ospClusterImpl.setSecutityLevel(secutityLevel);
+		}
+
 		ospClusterImpl.resetOriginalValues();
 
 		return ospClusterImpl;
@@ -303,11 +300,10 @@ public class OSPClusterCacheModel
 		osName = objectInput.readUTF();
 		osVersion = objectInput.readUTF();
 		appRootDir = objectInput.readUTF();
-		dataRootDir = objectInput.readUTF();
-		contentRootDir = objectInput.readUTF();
 		description = objectInput.readUTF();
 		serverIp = objectInput.readUTF();
 		sshPort = objectInput.readUTF();
+		identificationCommand = objectInput.readUTF();
 		accessMethod = objectInput.readUTF();
 		authorizedId = objectInput.readUTF();
 		authorizedPassword = objectInput.readUTF();
@@ -316,6 +312,7 @@ public class OSPClusterCacheModel
 		schedulerClass = objectInput.readUTF();
 
 		schedulerStatus = objectInput.readInt();
+		secutityLevel = objectInput.readUTF();
 	}
 
 	@Override
@@ -382,20 +379,6 @@ public class OSPClusterCacheModel
 			objectOutput.writeUTF(appRootDir);
 		}
 
-		if (dataRootDir == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(dataRootDir);
-		}
-
-		if (contentRootDir == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(contentRootDir);
-		}
-
 		if (description == null) {
 			objectOutput.writeUTF("");
 		}
@@ -415,6 +398,13 @@ public class OSPClusterCacheModel
 		}
 		else {
 			objectOutput.writeUTF(sshPort);
+		}
+
+		if (identificationCommand == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(identificationCommand);
 		}
 
 		if (accessMethod == null) {
@@ -460,6 +450,13 @@ public class OSPClusterCacheModel
 		}
 
 		objectOutput.writeInt(schedulerStatus);
+
+		if (secutityLevel == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(secutityLevel);
+		}
 	}
 
 	public String uuid;
@@ -476,11 +473,10 @@ public class OSPClusterCacheModel
 	public String osName;
 	public String osVersion;
 	public String appRootDir;
-	public String dataRootDir;
-	public String contentRootDir;
 	public String description;
 	public String serverIp;
 	public String sshPort;
+	public String identificationCommand;
 	public String accessMethod;
 	public String authorizedId;
 	public String authorizedPassword;
@@ -488,5 +484,6 @@ public class OSPClusterCacheModel
 	public String schedulerVersion;
 	public String schedulerClass;
 	public int schedulerStatus;
+	public String secutityLevel;
 
 }

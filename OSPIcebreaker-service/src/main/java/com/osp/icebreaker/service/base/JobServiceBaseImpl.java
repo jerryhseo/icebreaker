@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 public abstract class JobServiceBaseImpl
 	extends BaseServiceImpl
-	implements JobService, AopService, IdentifiableOSGiService {
+	implements AopService, IdentifiableOSGiService, JobService {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -102,8 +102,8 @@ public abstract class JobServiceBaseImpl
 
 			sqlUpdate.update();
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 	}
 

@@ -14,8 +14,6 @@
 
 package com.osp.icebreaker.service.http;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * Provides the SOAP utility for the
  * <code>com.osp.icebreaker.service.IcebreakerEntryServiceUtil</code> service
@@ -55,6 +53,5 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see IcebreakerEntryServiceHttp
  * @generated
  */
-@ProviderType
 public class IcebreakerEntryServiceSoap {
 }

@@ -22,8 +22,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * <p>
  * This class is a wrapper for {@link IcebreakerEntry}.
@@ -33,7 +31,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see IcebreakerEntry
  * @generated
  */
-@ProviderType
 public class IcebreakerEntryWrapper
 	extends BaseModelWrapper<IcebreakerEntry>
 	implements IcebreakerEntry, ModelWrapper<IcebreakerEntry> {

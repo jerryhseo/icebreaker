@@ -4,20 +4,20 @@
 <%@page import="com.osp.icebreaker.model.OSPCluster"%>
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="java.util.List"%>
-<%@page import="com.osp.icebreaker.web.constants.ParameterNames"%>
+<%@page import="com.osp.icebreaker.web.constants.OSPIcebreakerWebParameterNames"%>
 <%@page import="com.liferay.portal.kernel.util.GetterUtil"%>
-<%@page import="com.osp.icebreaker.web.constants.MVCCommandNames"%>
+<%@page import="com.osp.icebreaker.web.constants.OSPIcebreakerWebMVCCommandNames"%>
 <%@ include file="../init.jsp"%>
 
 <%
-PortletURL portletURL = renderResponse.createRenderURL();
-int clustersCount = GetterUtil.getInteger( renderRequest.getAttribute(ParameterNames.CLUSTERS_COUNT) );
-List<OSPCluster> clustersList = (List<OSPCluster>)GetterUtil.getObject( renderRequest.getAttribute(ParameterNames.CLUSTERS_LIST) );
-String displayStyle = GetterUtil.getString( renderRequest.getAttribute(ParameterNames.DISPLAY_STYLE) );
+	PortletURL portletURL = renderResponse.createRenderURL();
+int clustersCount = GetterUtil.getInteger( renderRequest.getAttribute(OSPIcebreakerWebParameterNames.CLUSTERS_COUNT) );
+List<OSPCluster> clustersList = (List<OSPCluster>)GetterUtil.getObject( renderRequest.getAttribute(OSPIcebreakerWebParameterNames.CLUSTERS_LIST) );
+String displayStyle = GetterUtil.getString( renderRequest.getAttribute(OSPIcebreakerWebParameterNames.DISPLAY_STYLE) );
 %>
 
 <portlet:renderURL var="addClusterURL">
-	<portlet:param name="mvcRenderCommand" value="<%= MVCCommandNames.EDIT_CLUSTER %>"></portlet:param>
+	<portlet:param name="mvcRenderCommand" value="<%=OSPIcebreakerWebMVCCommandNames.EDIT_CLUSTER%>"></portlet:param>
 </portlet:renderURL>
 
 <%

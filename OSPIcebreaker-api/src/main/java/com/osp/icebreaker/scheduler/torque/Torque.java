@@ -22,6 +22,8 @@ import org.apache.commons.exec.ExecuteStreamHandler;
 import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.lang3.StringUtils;
 
+import com.osp.icebreaker.constants.OSPClusterIdentificationCommands;
+import com.osp.icebreaker.exception.OSPUnsupportedClusterIdentificationMethodException;
 import com.osp.icebreaker.model.OSPScheduler;
 import com.osp.icebreaker.scheduler.torque.model.TorqueJob;
 import com.osp.icebreaker.scheduler.torque.model.TorqueNode;
@@ -33,10 +35,10 @@ import com.osp.icebreaker.scheduler.torque.parser.TorqueQstatJobsParser;
 import com.osp.icebreaker.scheduler.torque.parser.TorqueQstatQueuesParser;
 import com.osp.icebreaker.scheduler.torque.util.TorqueCommandOutput;
 import com.osp.icebreaker.scheduler.torque.util.TorqueException;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.StringPool;
 
 public class Torque implements OSPScheduler{
 	private static final String SEQ_RUN_SCRIPT="seq_run.pbs";
@@ -56,7 +58,7 @@ public class Torque implements OSPScheduler{
 			String wallTime
 			) throws IOException{
 		System.out.println("Qsub: "+this.COMMAND_QSUB);
-		String input = "";
+		String input = StringPool.BLANK;
 		
 		if( workingDir == null || workingDir.isEmpty() ){
 			//Set Default working dir 
@@ -885,16 +887,28 @@ public class Torque implements OSPScheduler{
     private static final TorqueQstatQueuesParser QSTAT_QUEUES_PARSER = new TorqueQstatQueuesParser();
     private static final TorqueQstatJobsParser QSTAT_JOBS_PARSER = new TorqueQstatJobsParser();
 
-    public Torque( String user, String password, String ip, String port){
+    public Torque( String authorizedUserId, String identificationCmd, String accessMethod, String password, String ip, String port) throws OSPUnsupportedClusterIdentificationMethodException{
     	StringBuilder prefix = new StringBuilder();
-    	prefix.append("sshpass -p");
+    	
+    	if(  identificationCmd.equals(OSPClusterIdentificationCommands.SSHPASS) ) {
+    		prefix.append(identificationCmd);
+    	}
+    	else {
+    		throw new OSPUnsupportedClusterIdentificationMethodException();
+    	}
+    	
+    	prefix.append(StringPool.SPACE);
+    	prefix.append("-p");
+    	prefix.append(StringPool.SPACE);
     	prefix.append(password);
     	prefix.append(StringPool.SPACE);
-    	prefix.append("ssh -p");
+    	prefix.append(accessMethod);
+    	prefix.append(StringPool.SPACE);
+    	prefix.append("-p");
     	prefix.append(StringPool.SPACE);
     	prefix.append(port);
     	prefix.append(StringPool.SPACE);
-    	prefix.append(user);
+    	prefix.append(authorizedUserId);
     	prefix.append(StringPool.AT);
     	prefix.append(ip);
     	prefix.append(StringPool.SPACE);

@@ -1,4 +1,4 @@
-package com.osp.icebreaker.web.cluster.toolbar;
+package com.osp.icebreaker.web.cluster.admin.portlet.toolbar;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -7,8 +7,8 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class ClustersManagementToolbarDisplayContext extends SearchContainerManagementToolbarDisplayContext {
-	 public ClustersManagementToolbarDisplayContext(
+public class ClusterAdminToolbarDisplayContext extends SearchContainerManagementToolbarDisplayContext {
+	 public ClusterAdminToolbarDisplayContext(
 				LiferayPortletRequest liferayPortletRequest,
 				LiferayPortletResponse liferayPortletResponse,
 				HttpServletRequest request, 

@@ -14,7 +14,6 @@
 
 package com.osp.icebreaker.service;
 
-import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
@@ -31,7 +30,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see OSPClusterService
  * @generated
  */
-@ProviderType
 public class OSPClusterServiceUtil {
 
 	/*
@@ -40,26 +38,24 @@ public class OSPClusterServiceUtil {
 	 * Never modify this class directly. Add custom service methods to <code>com.osp.icebreaker.service.impl.OSPClusterServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.osp.icebreaker.model.OSPCluster addCluster(
-		String clusterName,
-		com.liferay.portal.kernel.service.ServiceContext sc) {
-
-		return getService().addCluster(clusterName, sc);
-	}
-
-	public static com.osp.icebreaker.model.OSPCluster addCluster(
-		String clusterName, String osFamily, String osName, String osVersion,
-		String appRootDir, String dataRootDir, String contentRootDir,
-		java.util.Map<java.util.Locale, String> descriptionMap, String serverIp,
-		String accessMethod, String sshPort, String authorizedId,
-		String authorizedPassword, String schedulerName,
-		String schedulerVersion, String schedulerClass,
-		com.liferay.portal.kernel.service.ServiceContext sc) {
+			String clusterName, String osFamily, String osName,
+			String osVersion, String appRootDir, String dataRootDir,
+			String contentRootDir,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			String serverIp, String sshPort, String identificationCommand,
+			String accessMethod, String authorizedId, String authorizedPassword,
+			String schedulerName, String schedulerVersion,
+			String schedulerClass,
+			com.osp.icebreaker.constants.OSPClusterSecurityLevels securityLevel,
+			com.liferay.portal.kernel.service.ServiceContext sc)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addCluster(
 			clusterName, osFamily, osName, osVersion, appRootDir, dataRootDir,
-			contentRootDir, descriptionMap, serverIp, accessMethod, sshPort,
-			authorizedId, authorizedPassword, schedulerName, schedulerVersion,
-			schedulerClass, sc);
+			contentRootDir, descriptionMap, serverIp, sshPort,
+			identificationCommand, accessMethod, authorizedId,
+			authorizedPassword, schedulerName, schedulerVersion, schedulerClass,
+			securityLevel, sc);
 	}
 
 	public static com.osp.icebreaker.model.OSPCluster deleteCluster(
@@ -88,13 +84,6 @@ public class OSPClusterServiceUtil {
 	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.osp.icebreaker.model.OSPCluster updateCluster(
-			long clusterId, com.liferay.portal.kernel.service.ServiceContext sc)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return getService().updateCluster(clusterId, sc);
 	}
 
 	public static OSPClusterService getService() {

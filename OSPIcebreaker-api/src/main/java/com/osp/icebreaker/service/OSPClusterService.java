@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import com.osp.icebreaker.constants.OSPClusterSecurityLevels;
 import com.osp.icebreaker.model.OSPCluster;
 
 import java.util.Locale;
@@ -54,15 +55,16 @@ public interface OSPClusterService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link OSPClusterServiceUtil} to access the osp cluster remote service. Add custom service methods to <code>com.osp.icebreaker.service.impl.OSPClusterServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public OSPCluster addCluster(String clusterName, ServiceContext sc);
-
 	public OSPCluster addCluster(
-		String clusterName, String osFamily, String osName, String osVersion,
-		String appRootDir, String dataRootDir, String contentRootDir,
-		Map<Locale, String> descriptionMap, String serverIp,
-		String accessMethod, String sshPort, String authorizedId,
-		String authorizedPassword, String schedulerName,
-		String schedulerVersion, String schedulerClass, ServiceContext sc);
+			String clusterName, String osFamily, String osName,
+			String osVersion, String appRootDir, String dataRootDir,
+			String contentRootDir, Map<Locale, String> descriptionMap,
+			String serverIp, String sshPort, String identificationCommand,
+			String accessMethod, String authorizedId, String authorizedPassword,
+			String schedulerName, String schedulerVersion,
+			String schedulerClass, OSPClusterSecurityLevels securityLevel,
+			ServiceContext sc)
+		throws PortalException;
 
 	public OSPCluster deleteCluster(long clusterId) throws PortalException;
 
@@ -78,8 +80,5 @@ public interface OSPClusterService extends BaseService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
-
-	public OSPCluster updateCluster(long clusterId, ServiceContext sc)
-		throws PortalException;
 
 }

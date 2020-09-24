@@ -10,6 +10,7 @@ public class qnodes {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		/*
 		Torque torque = new Torque("osp", "osp2017!!", "192.168.56.102", "22");
 		
 		List<TorqueNode> nodes = torque.qnodes();
@@ -17,6 +18,7 @@ public class qnodes {
 		for( TorqueNode node : nodes ){
 			System.out.println(node.toString());
 		}
+		*/
 	}
 
 }

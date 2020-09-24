@@ -1,9 +1,6 @@
 package com.osp.icebreaker.model;
 
 import java.io.IOException;
-import java.util.Map;
-
-import com.osp.icebreaker.model.Job;
 import com.liferay.portal.kernel.json.JSONArray;
 
 public interface OSPScheduler {

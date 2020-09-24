@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 public abstract class OSPClusterServiceBaseImpl
 	extends BaseServiceImpl
-	implements OSPClusterService, AopService, IdentifiableOSGiService {
+	implements AopService, IdentifiableOSGiService, OSPClusterService {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -104,8 +104,8 @@ public abstract class OSPClusterServiceBaseImpl
 
 			sqlUpdate.update();
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 	}
 

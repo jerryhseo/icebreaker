@@ -17,8 +17,6 @@ package com.osp.icebreaker.model.impl;
 import com.osp.icebreaker.model.IcebreakerEntry;
 import com.osp.icebreaker.service.IcebreakerEntryLocalServiceUtil;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The extended model base implementation for the IcebreakerEntry service. Represents a row in the &quot;ICEBREAKER_IcebreakerEntry&quot; database table, with each column mapped to a property of this class.
  *
@@ -31,7 +29,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see IcebreakerEntry
  * @generated
  */
-@ProviderType
 public abstract class IcebreakerEntryBaseImpl
 	extends IcebreakerEntryModelImpl implements IcebreakerEntry {
 

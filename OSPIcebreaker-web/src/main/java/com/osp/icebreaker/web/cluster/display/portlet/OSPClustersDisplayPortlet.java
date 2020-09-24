@@ -1,8 +1,8 @@
-package com.osp.icebreaker.web.cluster.portlet;
+package com.osp.icebreaker.web.cluster.display.portlet;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.osp.icebreaker.constants.PortletKeys;
-import com.osp.icebreaker.web.constants.JspPaths;
+import com.osp.icebreaker.web.constants.OSPIcebreakerWebJSPPaths;
 
 import javax.portlet.Portlet;
 
@@ -17,7 +17,7 @@ import org.osgi.service.component.annotations.Component;
 			
 			"javax.portlet.display-name=OSP Cluster Display",
 			"javax.portlet.init-param.template-path=/",
-			"javax.portlet.init-param.view-template="+JspPaths.DISPLAY_CLUSTERS_JSP,
+			"javax.portlet.init-param.view-template="+OSPIcebreakerWebJSPPaths.DISPLAY_CLUSTERS_JSP,
 			"javax.portlet.name=" + PortletKeys.OSPCLUSTERDISPLAY,
 			"javax.portlet.resource-bundle=content.Language",
 			"javax.portlet.security-role-ref=power-user,user"

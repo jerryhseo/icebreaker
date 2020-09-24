@@ -22,8 +22,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * <p>
  * This class is a wrapper for {@link OSPCluster}.
@@ -33,10 +31,9 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see OSPCluster
  * @generated
  */
-@ProviderType
 public class OSPClusterWrapper
 	extends BaseModelWrapper<OSPCluster>
-	implements OSPCluster, ModelWrapper<OSPCluster> {
+	implements ModelWrapper<OSPCluster>, OSPCluster {
 
 	public OSPClusterWrapper(OSPCluster ospCluster) {
 		super(ospCluster);
@@ -60,11 +57,10 @@ public class OSPClusterWrapper
 		attributes.put("osName", getOsName());
 		attributes.put("osVersion", getOsVersion());
 		attributes.put("appRootDir", getAppRootDir());
-		attributes.put("dataRootDir", getDataRootDir());
-		attributes.put("contentRootDir", getContentRootDir());
 		attributes.put("description", getDescription());
 		attributes.put("serverIp", getServerIp());
 		attributes.put("sshPort", getSshPort());
+		attributes.put("identificationCommand", getIdentificationCommand());
 		attributes.put("accessMethod", getAccessMethod());
 		attributes.put("authorizedId", getAuthorizedId());
 		attributes.put("authorizedPassword", getAuthorizedPassword());
@@ -72,6 +68,7 @@ public class OSPClusterWrapper
 		attributes.put("schedulerVersion", getSchedulerVersion());
 		attributes.put("schedulerClass", getSchedulerClass());
 		attributes.put("schedulerStatus", getSchedulerStatus());
+		attributes.put("secutityLevel", getSecutityLevel());
 
 		return attributes;
 	}
@@ -162,18 +159,6 @@ public class OSPClusterWrapper
 			setAppRootDir(appRootDir);
 		}
 
-		String dataRootDir = (String)attributes.get("dataRootDir");
-
-		if (dataRootDir != null) {
-			setDataRootDir(dataRootDir);
-		}
-
-		String contentRootDir = (String)attributes.get("contentRootDir");
-
-		if (contentRootDir != null) {
-			setContentRootDir(contentRootDir);
-		}
-
 		String description = (String)attributes.get("description");
 
 		if (description != null) {
@@ -190,6 +175,13 @@ public class OSPClusterWrapper
 
 		if (sshPort != null) {
 			setSshPort(sshPort);
+		}
+
+		String identificationCommand = (String)attributes.get(
+			"identificationCommand");
+
+		if (identificationCommand != null) {
+			setIdentificationCommand(identificationCommand);
 		}
 
 		String accessMethod = (String)attributes.get("accessMethod");
@@ -233,6 +225,12 @@ public class OSPClusterWrapper
 
 		if (schedulerStatus != null) {
 			setSchedulerStatus(schedulerStatus);
+		}
+
+		String secutityLevel = (String)attributes.get("secutityLevel");
+
+		if (secutityLevel != null) {
+			setSecutityLevel(secutityLevel);
 		}
 	}
 
@@ -312,16 +310,6 @@ public class OSPClusterWrapper
 	}
 
 	/**
-	 * Returns the content root dir of this osp cluster.
-	 *
-	 * @return the content root dir of this osp cluster
-	 */
-	@Override
-	public String getContentRootDir() {
-		return model.getContentRootDir();
-	}
-
-	/**
 	 * Returns the create date of this osp cluster.
 	 *
 	 * @return the create date of this osp cluster
@@ -329,16 +317,6 @@ public class OSPClusterWrapper
 	@Override
 	public Date getCreateDate() {
 		return model.getCreateDate();
-	}
-
-	/**
-	 * Returns the data root dir of this osp cluster.
-	 *
-	 * @return the data root dir of this osp cluster
-	 */
-	@Override
-	public String getDataRootDir() {
-		return model.getDataRootDir();
 	}
 
 	@Override
@@ -433,6 +411,16 @@ public class OSPClusterWrapper
 	}
 
 	/**
+	 * Returns the identification command of this osp cluster.
+	 *
+	 * @return the identification command of this osp cluster
+	 */
+	@Override
+	public String getIdentificationCommand() {
+		return model.getIdentificationCommand();
+	}
+
+	/**
 	 * Returns the modified date of this osp cluster.
 	 *
 	 * @return the modified date of this osp cluster
@@ -520,6 +508,16 @@ public class OSPClusterWrapper
 	@Override
 	public String getSchedulerVersion() {
 		return model.getSchedulerVersion();
+	}
+
+	/**
+	 * Returns the secutity level of this osp cluster.
+	 *
+	 * @return the secutity level of this osp cluster
+	 */
+	@Override
+	public String getSecutityLevel() {
+		return model.getSecutityLevel();
 	}
 
 	/**
@@ -632,6 +630,26 @@ public class OSPClusterWrapper
 		model.setAppRootDir(appRootDir);
 	}
 
+	@Override
+	public void setAttributes(
+		String clusterName, String osFamily, String osName, String osVersion,
+		String appRootDir, Map<java.util.Locale, String> descriptionMap,
+		String serverIp, String sshPort, String identificationCommand,
+		String accessMethod, String authorizedId, String authorizedPassword,
+		String schedulerName, String schedulerVersion, String schedulerClass,
+		int schedulerStatus, String securityLevel, long companyId, long groupId,
+		long userId, String userName, Date createDate, Date modifiedDate,
+		int status) {
+
+		model.setAttributes(
+			clusterName, osFamily, osName, osVersion, appRootDir,
+			descriptionMap, serverIp, sshPort, identificationCommand,
+			accessMethod, authorizedId, authorizedPassword, schedulerName,
+			schedulerVersion, schedulerClass, schedulerStatus, securityLevel,
+			companyId, groupId, userId, userName, createDate, modifiedDate,
+			status);
+	}
+
 	/**
 	 * Sets the authorized ID of this osp cluster.
 	 *
@@ -683,16 +701,6 @@ public class OSPClusterWrapper
 	}
 
 	/**
-	 * Sets the content root dir of this osp cluster.
-	 *
-	 * @param contentRootDir the content root dir of this osp cluster
-	 */
-	@Override
-	public void setContentRootDir(String contentRootDir) {
-		model.setContentRootDir(contentRootDir);
-	}
-
-	/**
 	 * Sets the create date of this osp cluster.
 	 *
 	 * @param createDate the create date of this osp cluster
@@ -700,16 +708,6 @@ public class OSPClusterWrapper
 	@Override
 	public void setCreateDate(Date createDate) {
 		model.setCreateDate(createDate);
-	}
-
-	/**
-	 * Sets the data root dir of this osp cluster.
-	 *
-	 * @param dataRootDir the data root dir of this osp cluster
-	 */
-	@Override
-	public void setDataRootDir(String dataRootDir) {
-		model.setDataRootDir(dataRootDir);
 	}
 
 	/**
@@ -787,6 +785,16 @@ public class OSPClusterWrapper
 	@Override
 	public void setGroupId(long groupId) {
 		model.setGroupId(groupId);
+	}
+
+	/**
+	 * Sets the identification command of this osp cluster.
+	 *
+	 * @param identificationCommand the identification command of this osp cluster
+	 */
+	@Override
+	public void setIdentificationCommand(String identificationCommand) {
+		model.setIdentificationCommand(identificationCommand);
 	}
 
 	/**
@@ -877,6 +885,16 @@ public class OSPClusterWrapper
 	@Override
 	public void setSchedulerVersion(String schedulerVersion) {
 		model.setSchedulerVersion(schedulerVersion);
+	}
+
+	/**
+	 * Sets the secutity level of this osp cluster.
+	 *
+	 * @param secutityLevel the secutity level of this osp cluster
+	 */
+	@Override
+	public void setSecutityLevel(String secutityLevel) {
+		model.setSecutityLevel(secutityLevel);
 	}
 
 	/**

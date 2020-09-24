@@ -9,7 +9,7 @@
 
 	<portlet:renderURL var="viewClusterURL">
 		<portlet:param name="mvcRenderCommandName"
-			value="<%=MVCCommandNames.VIEW_CLUSTER %>" />
+			value="<%=OSPIcebreakerWebMVCCommandNames.VIEW_CLUSTER%>" />
 		<portlet:param name="redirect" value="${currentURL}" />
 		<portlet:param name="clusterId" value="${cluster.clusterId}" />
 	</portlet:renderURL>
@@ -20,7 +20,7 @@
 	
 	<portlet:renderURL var="editClusterURL">
 		<portlet:param name="mvcRenderCommandName"
-			value="<%=MVCCommandNames.EDIT_CLUSTER %>" />
+			value="<%=OSPIcebreakerWebMVCCommandNames.EDIT_CLUSTER%>" />
 		<portlet:param name="redirect" value="${currentURL}" />
 		<portlet:param name="clusterId" value="${cluster.clusterId}" />
 	</portlet:renderURL>
@@ -29,7 +29,7 @@
 
 	<%-- Delete action. --%>
 	
-	<portlet:actionURL name="<%=MVCCommandNames.DELETE_CLUSTER %>" var="deleteClusterURL">
+	<portlet:actionURL name="<%=OSPIcebreakerWebMVCCommandNames.DELETE_CLUSTER%>" var="deleteClusterURL">
 		<portlet:param name="redirect" value="${currentURL}" />
 		<portlet:param name="clusterId" value="${cluster.clusterId}" />
 	</portlet:actionURL>

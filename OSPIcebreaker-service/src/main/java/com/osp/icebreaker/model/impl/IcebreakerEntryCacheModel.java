@@ -27,15 +27,12 @@ import java.io.ObjectOutput;
 
 import java.util.Date;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The cache model class for representing IcebreakerEntry in entity cache.
  *
  * @author Jerry H. Seo
  * @generated
  */
-@ProviderType
 public class IcebreakerEntryCacheModel
 	implements CacheModel<IcebreakerEntry>, Externalizable {
 

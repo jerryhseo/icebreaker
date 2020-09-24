@@ -16,8 +16,13 @@ package com.osp.icebreaker.service.impl;
 
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.osp.icebreaker.constants.OSPClusterIdentificationCommands;
+import com.osp.icebreaker.constants.OSPClusterSecurityLevels;
+import com.osp.icebreaker.exception.NoSuchOSPClusterException;
 import com.osp.icebreaker.model.OSPCluster;
 import com.osp.icebreaker.model.OSPScheduler;
 import com.osp.icebreaker.service.base.OSPClusterLocalServiceBaseImpl;
@@ -50,103 +55,135 @@ import org.osgi.service.component.annotations.Component;
 )
 public class OSPClusterLocalServiceImpl extends OSPClusterLocalServiceBaseImpl {
 
-	public OSPCluster createCluster( String clusterName, ServiceContext sc) {
-		long clusterId = super.counterLocalService.increment();
-		
-		OSPCluster cluster = super.createOSPCluster(clusterId);
-		
-		cluster.setClusterName(clusterName);
-		
-		Date now = new Date();
-		
-		cluster.setCompanyId(sc.getCompanyId());
-		cluster.setGroupId(sc.getScopeGroupId());
-		cluster.setUserId(sc.getUserId());
-		cluster.setCreateDate(now);
-		cluster.setModifiedDate(now);
-		
-		return cluster;
-	}
-	
 	public OSPCluster addCluster( 
-					String clusterName, 
+					String clusterName,
 					String osFamily, 
 					String osName, 
 					String osVersion, 
 					String appRootDir, 
-					String dataRootDir, 
-					String contentRootDir, 
 					Map<Locale, String> descriptionMap, 
 					String serverIp, 
+					String sshPort,
+					String identificationCommand,
 					String accessMethod, 
-					String sshPort, 
 					String authorizedId, 
 					String authorizedPassword, 
 					String schedulerName, 
 					String schedulerVersion, 
 					String schedulerClass,
-					ServiceContext sc) {
+					OSPClusterSecurityLevels securityLevel,
+					ServiceContext sc) throws PortalException {
 		
-		OSPCluster cluster = createCluster( clusterName, sc );
+		long clusterId = super.counterLocalService.increment();
+		OSPCluster cluster = super.createOSPCluster(clusterId);
+		User user = super.userLocalService.getUser(sc.getUserId());
+		Date now = new Date();
 		
-		cluster.setOsFamily(osFamily);
-		cluster.setOsName(osName);
-		cluster.setOsVersion(osVersion);
-		cluster.setAppRootDir(appRootDir);
-		cluster.setDataRootDir(dataRootDir);
-		cluster.setContentRootDir(contentRootDir);
-		cluster.setDescriptionMap(descriptionMap);
-		cluster.setServerIp(serverIp);
-		cluster.setAccessMethod(accessMethod);
-		cluster.setSshPort(sshPort);
-		cluster.setAuthorizedId(authorizedId);
-		cluster.setAuthorizedPassword(authorizedPassword);
-		cluster.setSchedulerName(schedulerName);
-		cluster.setSchedulerVersion(schedulerVersion);
-		cluster.setSchedulerClass(schedulerClass);
+		cluster.setAttributes(
+				clusterName, 
+				osFamily, 
+				osName, 
+				osVersion, 
+				appRootDir, 
+				descriptionMap, 
+				serverIp, 
+				sshPort,
+				identificationCommand,
+				accessMethod, 
+				authorizedId, 
+				authorizedPassword, 
+				schedulerName, 
+				schedulerVersion, 
+				schedulerClass, 
+				WorkflowConstants.STATUS_APPROVED, 
+				securityLevel.name(), 
+				sc.getCompanyId(), 
+				sc.getScopeGroupId(), 
+				user.getUserId(), 
+				user.getFullName(), 
+				now, 
+				now, 
+				WorkflowConstants.STATUS_APPROVED);
 		
-		addCluster(cluster);
-		
-		return cluster;
+		return super.ospClusterPersistence.update(cluster);
 	}
 	
-	public OSPCluster addCluster( OSPCluster cluster ) {
+	public OSPCluster updateCluster(
+			long clusterId,
+			String clusterName,
+			String osFamily, 
+			String osName, 
+			String osVersion, 
+			String appRootDir, 
+			Map<Locale, String> descriptionMap, 
+			String serverIp, 
+			String sshPort, 
+			String identificationCommand,
+			String accessMethod, 
+			String authorizedId, 
+			String authorizedPassword, 
+			String schedulerName, 
+			String schedulerVersion, 
+			String schedulerClass,
+			OSPClusterSecurityLevels securityLevel,
+			ServiceContext sc
+			) throws PortalException {
+		OSPCluster cluster = super.ospClusterPersistence.findByPrimaryKey(clusterId);
+
+		cluster.setAttributes(
+				clusterName, 
+				osFamily, 
+				osName, 
+				osVersion, 
+				appRootDir, 
+				descriptionMap, 
+				serverIp, 
+				sshPort,
+				identificationCommand,
+				accessMethod, 
+				authorizedId, 
+				authorizedPassword, 
+				schedulerName, 
+				schedulerVersion, 
+				schedulerClass, 
+				cluster.getSchedulerStatus(), 
+				securityLevel.name(), 
+				cluster.getCompanyId(), 
+				cluster.getGroupId(), 
+				cluster.getUserId(), 
+				cluster.getUserName(), 
+				cluster.getCreateDate(), 
+				new Date(), 
+				cluster.getStatus());
 		
-		super.addOSPCluster(cluster);
-		
-		return cluster;
-	}
-	
-	public OSPCluster updateCluster( OSPCluster cluster) {
-		return super.updateOSPCluster(cluster);
+		return super.ospClusterPersistence.update(cluster);
 	}
 	
 	public OSPCluster removeCluster( long clusterId ) throws PortalException {
-		return super.deleteOSPCluster(clusterId);
+		return super.ospClusterPersistence.remove(clusterId);
 	}
 	
 	public OSPCluster removeCluster( String clusterName ) {
 		OSPCluster cluster = super.ospClusterPersistence.fetchByClusterName(clusterName);
 		
-		return super.deleteOSPCluster(cluster);
+		return super.ospClusterPersistence.remove(cluster);
 	}
 
 	public OSPCluster getCluster( String clusterName ) {
 		return super.ospClusterPersistence.fetchByClusterName(clusterName);
 	}
 	
-	public int countClusters() {
-		return super.ospClusterPersistence.countAll();
-	}
-	
 	public List<OSPCluster> getClusters() {
 		return super.ospClusterPersistence.findAll();
 	}
-	
 	public List<OSPCluster> getClusters(int start, int end) {
 		return super.ospClusterPersistence.findAll(start, end);
 	}
+	public int countClusters() {
+		return super.ospClusterPersistence.countAll();
+	}
 
+	/*
 	public List<OSPCluster> getClusters(int start, int end, OrderByComparator<OSPCluster> orderByComparator) {
 		return super.ospClusterPersistence.findAll(start, end, orderByComparator);
 	}
@@ -154,8 +191,9 @@ public class OSPClusterLocalServiceImpl extends OSPClusterLocalServiceBaseImpl {
 	public List<OSPCluster> getClusters(int start, int end, OrderByComparator<OSPCluster> orderByComparator, boolean retrieveFromCache) {
 		return super.ospClusterPersistence.findAll(start, end, orderByComparator, retrieveFromCache);
 	}
+	*/
 	
-	public OSPScheduler createOSPScheduler( String className, String user, String password, String ip, String port ){
+	public OSPScheduler createOSPScheduler( String className,   String identificationCommand,  String accessMethod, String authorizedUserId,  String password, String ip, String port ){
         // Create class of type Base.
         Class<?> schedulerClass = null;
 		try {
@@ -166,12 +204,12 @@ public class OSPClusterLocalServiceImpl extends OSPClusterLocalServiceBaseImpl {
         // Create constructor call with argument types.
         Constructor<?> ctr = null;
 		try {
-			ctr = schedulerClass.getConstructor(String.class, String.class, String.class, String.class);
+			ctr = schedulerClass.getConstructor(String.class, String.class, String.class, String.class, String.class, String.class);
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
         // Finally create object of type Base and pass data to constructor.
-        String[] arguments = {user, password, ip, port};
+        String[] arguments = {authorizedUserId, identificationCommand,  accessMethod, password, ip, port};
         Object object = null;
 		try {
 			object = ctr.newInstance((Object[])arguments);
@@ -188,6 +226,8 @@ public class OSPClusterLocalServiceImpl extends OSPClusterLocalServiceBaseImpl {
 		
 		return this.createOSPScheduler(
 				cluster.getSchedulerClass(), 
+				cluster.getIdentificationCommand(),
+				cluster.getAccessMethod(),
 				cluster.getAuthorizedId(), 
 				cluster.getAuthorizedPassword(), 
 				cluster.getServerIp(), 

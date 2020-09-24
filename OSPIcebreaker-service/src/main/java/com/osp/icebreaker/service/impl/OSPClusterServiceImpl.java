@@ -17,6 +17,7 @@ package com.osp.icebreaker.service.impl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.osp.icebreaker.constants.OSPClusterSecurityLevels;
 import com.osp.icebreaker.model.OSPCluster;
 import com.osp.icebreaker.service.base.OSPClusterServiceBaseImpl;
 
@@ -46,12 +47,6 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class OSPClusterServiceImpl extends OSPClusterServiceBaseImpl {
-	public OSPCluster addCluster( String clusterName, ServiceContext sc) {
-
-		OSPCluster cluster =  super.ospClusterLocalService.createCluster(clusterName, sc);
-			
-		return super.ospClusterLocalService.addCluster(cluster);
-	}
 	
 	public OSPCluster addCluster( 
 			String clusterName, 
@@ -63,33 +58,35 @@ public class OSPClusterServiceImpl extends OSPClusterServiceBaseImpl {
 			String contentRootDir, 
 			Map<Locale, String> descriptionMap, 
 			String serverIp, 
+			String sshPort,
+			String identificationCommand,
 			String accessMethod, 
-			String sshPort, 
 			String authorizedId, 
 			String authorizedPassword, 
 			String schedulerName, 
 			String schedulerVersion, 
 			String schedulerClass,
-			ServiceContext sc ) {
+			OSPClusterSecurityLevels securityLevel,
+			ServiceContext sc ) throws PortalException {
 		
 			return super.ospClusterLocalService.addCluster(
-											clusterName, 
-											osFamily, 
-											osName, 
-											osVersion, 
-											appRootDir, 
-											dataRootDir, 
-											contentRootDir, 
-											descriptionMap, 
-											serverIp, 
-											accessMethod, 
-											sshPort, 
-											authorizedId, 
-											authorizedPassword, 
-											schedulerName, 
-											schedulerVersion, 
-											schedulerClass, 
-											sc);
+					clusterName,
+					osFamily, 
+					osName, 
+					osVersion, 
+					appRootDir, 
+					descriptionMap, 
+					serverIp, 
+					sshPort,
+					identificationCommand,
+					accessMethod, 
+					authorizedId, 
+					authorizedPassword, 
+					schedulerName, 
+					schedulerVersion, 
+					schedulerClass,
+					securityLevel,
+					sc);
 	}
 
 	public OSPCluster deleteCluster(long clusterId) throws PortalException{
@@ -99,11 +96,6 @@ public class OSPClusterServiceImpl extends OSPClusterServiceBaseImpl {
 		return cluster;
 	}
 	
-	public OSPCluster updateCluster( long clusterId, ServiceContext sc) throws PortalException{
-		OSPCluster cluster = super.ospClusterLocalService.getOSPCluster(clusterId);
-		return super.ospClusterLocalService.updateCluster(cluster); 
-	}
-
 	public OSPCluster getCluster(long clusterId) throws PortalException{
 		OSPCluster cluster = super.ospClusterLocalService.getOSPCluster(clusterId);
 

@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.osp.icebreaker.constants.OSPClusterSecurityLevels;
 import com.osp.icebreaker.model.OSPCluster;
 import com.osp.icebreaker.model.OSPScheduler;
 
@@ -67,15 +68,16 @@ public interface OSPClusterLocalService
 	 *
 	 * Never modify or reference this interface directly. Always use {@link OSPClusterLocalServiceUtil} to access the osp cluster local service. Add custom service methods to <code>com.osp.icebreaker.service.impl.OSPClusterLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public OSPCluster addCluster(OSPCluster cluster);
-
 	public OSPCluster addCluster(
-		String clusterName, String osFamily, String osName, String osVersion,
-		String appRootDir, String dataRootDir, String contentRootDir,
-		Map<Locale, String> descriptionMap, String serverIp,
-		String accessMethod, String sshPort, String authorizedId,
-		String authorizedPassword, String schedulerName,
-		String schedulerVersion, String schedulerClass, ServiceContext sc);
+			String clusterName, String osFamily, String osName,
+			String osVersion, String appRootDir,
+			Map<Locale, String> descriptionMap, String serverIp, String sshPort,
+			String identificationCommand, String accessMethod,
+			String authorizedId, String authorizedPassword,
+			String schedulerName, String schedulerVersion,
+			String schedulerClass, OSPClusterSecurityLevels securityLevel,
+			ServiceContext sc)
+		throws PortalException;
 
 	/**
 	 * Adds the osp cluster to the database. Also notifies the appropriate model listeners.
@@ -87,8 +89,6 @@ public interface OSPClusterLocalService
 	public OSPCluster addOSPCluster(OSPCluster ospCluster);
 
 	public int countClusters();
-
-	public OSPCluster createCluster(String clusterName, ServiceContext sc);
 
 	/**
 	 * Creates a new osp cluster with the primary key. Does not add the osp cluster to the database.
@@ -103,7 +103,8 @@ public interface OSPClusterLocalService
 		throws PortalException;
 
 	public OSPScheduler createOSPScheduler(
-		String className, String user, String password, String ip, String port);
+		String className, String identificationCommand, String accessMethod,
+		String authorizedUserId, String password, String ip, String port);
 
 	/**
 	 * Deletes the osp cluster with the primary key from the database. Also notifies the appropriate model listeners.
@@ -147,7 +148,7 @@ public interface OSPClusterLocalService
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
@@ -163,7 +164,7 @@ public interface OSPClusterLocalService
 	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
@@ -224,15 +225,6 @@ public interface OSPClusterLocalService
 	public List<OSPCluster> getClusters(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<OSPCluster> getClusters(
-		int start, int end, OrderByComparator<OSPCluster> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<OSPCluster> getClusters(
-		int start, int end, OrderByComparator<OSPCluster> orderByComparator,
-		boolean retrieveFromCache);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		PortletDataContext portletDataContext);
 
@@ -272,7 +264,7 @@ public interface OSPClusterLocalService
 	 * Returns a range of all the osp clusters.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.osp.icebreaker.model.impl.OSPClusterModelImpl</code>.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of osp clusters
@@ -316,6 +308,9 @@ public interface OSPClusterLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getOSPClustersCount();
 
+	/**
+	 * @throws PortalException
+	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
@@ -325,7 +320,16 @@ public interface OSPClusterLocalService
 
 	public OSPCluster removeCluster(String clusterName);
 
-	public OSPCluster updateCluster(OSPCluster cluster);
+	public OSPCluster updateCluster(
+			long clusterId, String clusterName, String osFamily, String osName,
+			String osVersion, String appRootDir,
+			Map<Locale, String> descriptionMap, String serverIp, String sshPort,
+			String identificationCommand, String accessMethod,
+			String authorizedId, String authorizedPassword,
+			String schedulerName, String schedulerVersion,
+			String schedulerClass, OSPClusterSecurityLevels securityLevel,
+			ServiceContext sc)
+		throws PortalException;
 
 	/**
 	 * Updates the osp cluster in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

@@ -17,8 +17,6 @@ package com.osp.icebreaker.model.impl;
 import com.osp.icebreaker.model.OSPCluster;
 import com.osp.icebreaker.service.OSPClusterLocalServiceUtil;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The extended model base implementation for the OSPCluster service. Represents a row in the &quot;ICEBREAKER_OSPCluster&quot; database table, with each column mapped to a property of this class.
  *
@@ -31,7 +29,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see OSPCluster
  * @generated
  */
-@ProviderType
 public abstract class OSPClusterBaseImpl
 	extends OSPClusterModelImpl implements OSPCluster {
 

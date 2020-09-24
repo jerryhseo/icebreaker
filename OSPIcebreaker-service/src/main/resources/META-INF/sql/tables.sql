@@ -75,16 +75,16 @@ create table ICEBREAKER_OSPCluster (
 	osName VARCHAR(75) null,
 	osVersion VARCHAR(75) null,
 	appRootDir VARCHAR(75) null,
-	dataRootDir VARCHAR(75) null,
-	contentRootDir VARCHAR(75) null,
 	description STRING null,
 	serverIp VARCHAR(75) null,
 	sshPort VARCHAR(75) null,
+	identificationCommand VARCHAR(75) null,
 	accessMethod VARCHAR(75) null,
 	authorizedId VARCHAR(75) null,
 	authorizedPassword VARCHAR(75) null,
 	schedulerName VARCHAR(75) null,
 	schedulerVersion VARCHAR(75) null,
 	schedulerClass VARCHAR(75) null,
-	schedulerStatus INTEGER
+	schedulerStatus INTEGER,
+	secutityLevel VARCHAR(75) null
 );

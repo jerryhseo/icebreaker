@@ -1,6 +1,6 @@
 package com.osp.icebreaker.web.constants;
 
-public class ParameterNames {
+public class OSPIcebreakerWebParameterNames {
 	final static public String ITEMS_PER_PAGE = "itemsPerPage";
 	final static public String RENDER_MESSAGE = "renderMessage";
 	final static public String CLUSTERS_COUNT = "clustersCount";

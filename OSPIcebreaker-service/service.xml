@@ -27,8 +27,6 @@
 		
 		<!--  Information of the cluster's storage -->
 		<column name="appRootDir" type="String"></column>
-		<column name="dataRootDir" type="String"></column>
-		<column name="contentRootDir" type="String"></column>
 		
 		<!--  Short Description for the scheduler -->
         <column name="description" localized="true" type="String"></column>
@@ -37,6 +35,7 @@
         <column name="serverIp" type="String"></column>
 		<!-- Method to connect to the scheduler, one of LOCALHOST, SSH, OPENAPI -->
         <column name="sshPort" type="String"></column>
+        <column name="identificationCommand" type="String"></column>
 		<column name="accessMethod" type="String"></column>
 		<!--  SSH port number which the scheduler is listening -->
 		<!-- URL to connect the scheduler through OPEN APIs -->
@@ -46,10 +45,10 @@
         <column name="schedulerName" type="String"></column>
         <column name="schedulerVersion" type="String"></column>
         <column name="schedulerClass" type="String"></column>
+        <column name="schedulerStatus" type="int"></column>
+        <column name="secutityLevel" type="String"></column>
         
         <!-- Sort Order -->
-        <column name="schedulerStatus" type="int"></column>
-        
         <order by="asc">
             <order-column name="clusterName" order-by="asc"></order-column>
         </order>
@@ -287,5 +286,7 @@
 		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
 	</entity>
     <exceptions>
+        <exception>OSPUnsupportedClusterIdentificationMethod</exception>
+    	
     </exceptions>
 </service-builder>

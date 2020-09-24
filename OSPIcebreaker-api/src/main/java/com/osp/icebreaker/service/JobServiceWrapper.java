@@ -16,8 +16,6 @@ package com.osp.icebreaker.service;
 
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * Provides a wrapper for {@link JobService}.
  *
@@ -25,7 +23,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see JobService
  * @generated
  */
-@ProviderType
 public class JobServiceWrapper
 	implements JobService, ServiceWrapper<JobService> {
 
