@@ -1,5 +1,5 @@
 <%@page import="com.osp.icebreaker.constants.MVCCommandNames"%>
-<%@ include file="../init.jsp"%>
+<%@ include file="../../init.jsp"%>
 
  <%-- Generate add / edit action URL and set title. --%>
 

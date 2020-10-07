@@ -1,11 +1,11 @@
 <%-- Generate assignment view  URL. --%>
 
-<%@page import="com.osp.icebreaker.constants.MVCCommandNames"%>
+<%@page import="com.osp.icebreaker.web.constants.OSPIcebreakerWebMVCCommandNames"%>
 <%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
 
 <portlet:renderURL var="viewClusterURL">
-	<portlet:param name="mvcRenderCommandName" value="<%=MVCCommandNames.VIEW_CLUSTER %>" />
+	<portlet:param name="mvcRenderCommandName" value="<%=OSPIcebreakerWebMVCCommandNames.VIEW_CLUSTER %>" />
 	<portlet:param name="redirect" value="${currentURL}" />
 	<portlet:param name="clusterId" value="${cluster.clusterId}" />
 </portlet:renderURL>
@@ -48,7 +48,7 @@
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-jsp
-			path="/ClusterAdmin/entry_actions.jsp" />
+			path="/Cluster/admin/entry_actions.jsp" />
 	</c:when>
 
 	<%-- Card view  --%>
@@ -65,7 +65,7 @@
 			<%-- Vertical card. --%>
 
 			<liferay-frontend:icon-vertical-card
-				actionJsp="/ClusterAdmin/entry_actions.jsp"
+				actionJsp="/Cluster/admin/entry_actions.jsp"
 				actionJspServletContext="<%= application %>" 
 				icon="cards2" resultRow="${row}"
 				title="${cluster.getClusterName()}" 
@@ -114,7 +114,7 @@
 
 		<liferay-ui:search-container-column-jsp 
 			name="actions"
-			path="/ClusterAdmin/entry_actions.jsp" 
+			path="/Cluster/admin/entry_actions.jsp" 
 		/>
 	</c:otherwise>
 </c:choose>

@@ -1,5 +1,5 @@
 <%@page import="com.osp.icebreaker.constants.MVCCommandNames"%>
-<%@ include file="../init.jsp"%>
+<%@ include file="../../init.jsp"%>
 
 <c:set var="cluster" value="${SEARCH_CONTAINER_RESULT_ROW.object}" />
 

@@ -1,3 +1,4 @@
+<%@page import="com.osp.icebreaker.web.constants.OSPIcebreakerWebMVCCommandNames"%>
 <%@ include file="../init.jsp"%>
 
 <portlet:renderURL var="addClusterURL">
@@ -10,20 +11,6 @@
 	
 	<%-- Clay management toolbar. --%>
 
-	<aui:row>
-		<aui:col width="25" cssClass="management-bar management-bar-light navbar">
-				<aui:button value="add-cluster"></aui:button>
-		</aui:col>
-		<aui:col width="75">
-			<clay:management-toolbar
-				disabled="${(clusterCount eq 0) or (clusterCount eq null)}"
-				displayContext="${clustersManagementToolbarDisplayContext}"
-				itemsTotal="${clusterCount}"
-				searchContainerId="clusterEntries"
-				selectable="false"
-			/>
-		</aui:col>
-	</aui:row>
 	
 	<%-- Search container. --%>
 

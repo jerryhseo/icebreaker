@@ -7,4 +7,6 @@ public class OSPIcebreakerWebParameterNames {
 	final static public String CLUSTERS_LIST = "clustersList";
 	final static public String PAGE_NO = "pageNo";
 	final static public String DISPLAY_STYLE = "displayStyle";
+	final static public String CLUSTER_SEARCH_CONTAINER = "clusterSearchContainer";
+	final static public String CLUSTER_DISPLAY_CONTEXT = "clusterDisplayContext";
 }

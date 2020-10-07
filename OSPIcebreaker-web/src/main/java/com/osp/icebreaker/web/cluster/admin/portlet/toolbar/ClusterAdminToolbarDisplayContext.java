@@ -4,6 +4,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.osp.icebreaker.model.OSPCluster;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,7 @@ public class ClusterAdminToolbarDisplayContext extends SearchContainerManagement
 				LiferayPortletRequest liferayPortletRequest,
 				LiferayPortletResponse liferayPortletResponse,
 				HttpServletRequest request, 
-				SearchContainer searchContainer) {
+				SearchContainer<OSPCluster> searchContainer) {
 
 		super(liferayPortletRequest, liferayPortletResponse, request, searchContainer);
 	}
